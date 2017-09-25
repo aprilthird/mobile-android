@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FitGym</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings related to MainActivity -->
+    <string name="welcome_message">Who are you?</string>
+    <string name="login_message">Log In as %1$s</string>
+    <string name="role_name">I\'m <b>%1$s!</b></string>
+    <string name="title_activity_login_gym_company">Sign in as Gym Company</string>
+    <string name="title_activity_login_client">Sign in as Client</string>
+
+    <!-- Strings related to Login -->
+    <string name="register_message">Don\'t have an account?</string>
+    <string name="link_to_landing"><a href="https://jrojas96.github.io/web-landing/HomeGym.html">Visit our Web Page!</a></string>
+    <string name="login_account">Username</string>
+    <string name="login_password">Password</string>
+    <string name="sign_in_button_message">Sign In</string>
+    <string name="sign_up_button_message">Sign Up</string>
+    <string name="information_message">For more information</string>
+    <string name="url_to_gc_landing">https://jrojas96.github.io/web-landing/HomeGym.html</string>
+</resources>
