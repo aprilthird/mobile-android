@@ -9,6 +9,9 @@
     <string name="title_activity_login_gym_company">Sign in as Gym Company</string>
     <string name="title_activity_login_client">Sign in as Client</string>
 
+    <!-- Strings related to Register Company -->
+    <string name="title_company_info"></string>
+
     <!-- Strings related to Login -->
     <string name="register_message">Don\'t have an account?</string>
     <string name="link_to_landing"><a href="https://jrojas96.github.io/web-landing/HomeGym.html">Visit our Web Page!</a></string>
@@ -18,4 +21,6 @@
     <string name="sign_up_button_message">Sign Up</string>
     <string name="information_message">For more information</string>
     <string name="url_to_gc_landing">https://jrojas96.github.io/web-landing/HomeGym.html</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_register_gym_company">RegisterGymCompanyActivity</string>
 </resources>

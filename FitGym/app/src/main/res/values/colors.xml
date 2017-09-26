@@ -2,10 +2,14 @@
 <resources>
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
-    <color name="colorPrimaryLight">#FFCDD2</color>
+    <color name="colorPrimaryLight">#ffccbc</color>
     <color name="colorAccent">#00BCD4</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="colorBackground">#e0e0e0</color>
+    <color name="colorSup">#ff6e40</color>
+    <color name="colorMid">#ff5722</color>
+    <color name="colorInf">#dd2c00</color>
 </resources>
