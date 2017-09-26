@@ -18,4 +18,6 @@
     <string name="sign_up_button_message">Sign Up</string>
     <string name="information_message">For more information</string>
     <string name="url_to_gc_landing">https://jrojas96.github.io/web-landing/HomeGym.html</string>
+    <string name="title_activity_login_trainer">LoginTrainerActivity</string>
+    <string name="title_activity_my_clients">MyClientsActivity</string>
 </resources>

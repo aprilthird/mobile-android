@@ -1,11 +1,7 @@
 package com.teamgym.fitgym.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.constraint.solver.SolverVariable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -29,6 +25,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.activities.clients.LoginClientActivity;
+import com.teamgym.fitgym.activities.gymcompanies.LoginGymCompanyActivity;
+import com.teamgym.fitgym.activities.personaltrainers.LoginTrainerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -179,11 +178,11 @@ public class MainActivity extends AppCompatActivity {
             switch (sectionName) {
                 case "Client":
                     // TODO Start Login Activity for Client
-                    // startActivity(new Intent(view.getContext(), LoginClientActivity.class));
+                    startActivity(new Intent(view.getContext(), LoginClientActivity.class));
                     break;
                 case "Personal Trainer":
                     // TODO Start Login Activity for Personal Trainer
-
+                    startActivity(new Intent(view.getContext(), LoginTrainerActivity.class));
                     break;
                 case "Gym Company":
                     startActivity(new Intent(view.getContext(), LoginGymCompanyActivity.class));

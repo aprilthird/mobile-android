@@ -1,4 +1,12 @@
-package com.teamgym.fitgym.models;
+package com.teamgym.fitgym.utilities;
+
+import com.teamgym.fitgym.models.ActivityType;
+import com.teamgym.fitgym.models.Client;
+import com.teamgym.fitgym.models.Goal;
+import com.teamgym.fitgym.models.PTrainer;
+import com.teamgym.fitgym.models.QMeasurement;
+import com.teamgym.fitgym.models.SuscriptionType;
+import com.teamgym.fitgym.models.TypeMeal;
 
 import java.util.ArrayList;
 import java.util.List;
