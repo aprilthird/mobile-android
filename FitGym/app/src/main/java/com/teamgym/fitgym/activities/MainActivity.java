@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
         welcomeTextView.setText(R.string.welcome_message);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+*/
     }
 
 
