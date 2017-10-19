@@ -1,0 +1,164 @@
+package com.teamgym.fitgym.activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.activities.gymclient.NavigationClientActivity;
+import com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity;
+import com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity;
+import com.teamgym.fitgym.models.SuscriptionType;
+import com.teamgym.fitgym.networking.FitGymApiService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class LoginActivity extends AppCompatActivity {
+    TextView visitPageTextView;
+    AppCompatButton signInButton;
+    AppCompatButton signUpButton;
+    TextInputEditText usernameEditText;
+    TextInputEditText passwordEditText;
+    String receivedToken;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme_LoginTheme);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        visitPageTextView = (TextView) findViewById(R.id.visitPageTextView);
+        visitPageTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        usernameEditText = (TextInputEditText) findViewById(R.id.usernameTextInputEditText);
+        passwordEditText = (TextInputEditText) findViewById(R.id.passwordTextInputEditText);
+
+        signInButton = (AppCompatButton) findViewById(R.id.signInButton);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                boolean cancel = false;
+
+                if(username.trim().isEmpty()) {
+                    usernameEditText.setError(getString(R.string.form_field_required));
+                    cancel = true;
+                }
+                if(password.trim().isEmpty()) {
+                    passwordEditText.setError(getString(R.string.form_field_required));
+                    cancel = true;
+                }
+                if(!cancel) {
+                    getToken(view, usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                }
+                else {
+                    Toast.makeText(view.getContext(), R.string.alert_invalid_login, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        signUpButton = (AppCompatButton) findViewById(R.id.signUpButton);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), SuscriptionType.class));
+            }
+        });
+    }
+
+    private void getToken(final View view, String username, String password) {
+        // GYM COMPANY CHECK LOGIN
+        AndroidNetworking.post(FitGymApiService.GYM_COMPANY_ACCOUNTS)
+                .setPriority(Priority.LOW)
+                .setTag(R.string.app_name)
+                .addBodyParameter("username", username)
+                .addBodyParameter("password", password)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if("error".equalsIgnoreCase(response.getString("status")))
+                                Log.d(getString(R.string.app_name), response.getString("message"));
+                            receivedToken = response.getString("token");
+                            startActivity(new Intent(view.getContext(), NavigationGymCompanyActivity.class));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(getString(R.string.app_name), anError.getLocalizedMessage());
+                    }
+                });
+
+        // PERSONAL TRAINER CHECK LOGIN
+        AndroidNetworking.post(FitGymApiService.TRAINER_ACCOUNTS)
+                .setPriority(Priority.LOW)
+                .setTag(R.string.app_name)
+                .addBodyParameter("username", username)
+                .addBodyParameter("password", password)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if("error".equalsIgnoreCase(response.getString("status")))
+                                Log.d(getString(R.string.app_name), response.getString("message"));
+                            receivedToken = response.getString("token");
+                            startActivity(new Intent(view.getContext(), NavigationTrainerActivity.class));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(getString(R.string.app_name), anError.getLocalizedMessage());
+                    }
+                });
+
+        // CLIENT CHECK LOGIN
+        AndroidNetworking.post(FitGymApiService.CLIENT_ACCOUNTS)
+                .setPriority(Priority.LOW)
+                .setTag(R.string.app_name)
+                .addBodyParameter("username", username)
+                .addBodyParameter("password", password)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if("error".equalsIgnoreCase(response.getString("status")))
+                                Log.d(getString(R.string.app_name), response.getString("message"));
+                            receivedToken = response.getString("token");
+                            startActivity(new Intent(view.getContext(), NavigationClientActivity.class));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(getString(R.string.app_name), anError.getLocalizedMessage());
+                    }
+                });
+    }
+}

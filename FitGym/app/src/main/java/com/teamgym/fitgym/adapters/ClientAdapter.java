@@ -12,28 +12,43 @@ import com.teamgym.fitgym.models.Client;
 import java.util.List;
 
 /**
- * Created by GNO on 26/09/2017.
+ * Created by GNO on 27/09/2017.
  */
 
 public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder> {
+
     private List<Client> clients ;
+
+    public ClientAdapter(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    public ClientAdapter(){
+    }
 
     @Override
     public ClientAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         return new ViewHolder(LayoutInflater
-                                .from(parent.getContext())
-                                .inflate(R.layout.card_client,parent,false));
+                .from(parent.getContext())
+                .inflate(R.layout.card_client,parent,false));
     }
 
     @Override
     public void onBindViewHolder(ClientAdapter.ViewHolder holder, int position) {
-
+        final Client client =  clients.get(position);
+        holder.nameTextView.setText(client.getFirstName()+" " + client.getLastName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return clients.size();
+    }
+
+    public ClientAdapter setClients(List<Client> clients)
+    {
+        this.clients = clients;
+        return this;
     }
 
     public List<Client> getClients(){
@@ -48,3 +63,4 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
         }
     }
 }
+

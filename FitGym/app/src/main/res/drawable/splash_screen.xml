@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:opacity="opaque">
+    <item
+        android:drawable="@color/colorPrimaryDark"/>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_fitgym_icon"
+            tools:ignore="VectorDrawableCompat" />
+    </item>
+</layer-list>

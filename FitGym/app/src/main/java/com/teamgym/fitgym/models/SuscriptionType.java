@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  */
 
 public class SuscriptionType extends SugarRecord{
-    private int qpTrainer;
+    private int qpTrainer; //cantidad entrenadores
     private int qEstablishment;
-    private BigDecimal price;
+    private BigDecimal price; //
     private String description;
     private int qClient;
 

@@ -7,17 +7,50 @@
     <string name="login_message">Log In as %1$s</string>
     <string name="role_name">I\'m <b>%1$s!</b></string>
     <string name="title_activity_login_gym_company">Sign in as Gym Company</string>
+    <string name="title_activity_login_personal_trainer">Sign in as Personal Trainer</string>
     <string name="title_activity_login_client">Sign in as Client</string>
 
-    <!-- Strings related to Login -->
-    <string name="register_message">Don\'t have an account?</string>
-    <string name="link_to_landing"><a href="https://jrojas96.github.io/web-landing/HomeGym.html">Visit our Web Page!</a></string>
+    <!-- Strings related to Register Company -->
+    <string name="title_company_info"></string>
+
+    <!-- Strings related to Login / Welcome -->
+    <string name="register_message">Do you have a Gym?</string>
+    <string name="link_to_landing"><a href="https://jrojas96.github.io/admin/home.html">Visit our Web Page!</a></string>
     <string name="login_account">Username</string>
     <string name="login_password">Password</string>
     <string name="sign_in_button_message">Sign In</string>
     <string name="sign_up_button_message">Sign Up</string>
-    <string name="information_message">For more information</string>
+    <string name="information_message">New on FitGym ?</string>
     <string name="url_to_gc_landing">https://jrojas96.github.io/web-landing/HomeGym.html</string>
-    <string name="title_activity_login_trainer">LoginTrainerActivity</string>
+
+    <!-- Activity titles -->
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_register_gym_company">RegisterGymCompanyActivity</string>
     <string name="title_activity_my_clients">MyClientsActivity</string>
+    <string name="title_activity_new_client">NewClientActivity</string>
+    <string name="title_activity_subscription_type">SubscriptionTypeActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- Strings related to fragments -->
+    <string name="title_activity_navigation_client">NavigationClientActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_navigation_trainer">NavigationTrainerActivity</string>
+    <string name="title_activity_navigation_gym_company">NavigationGymCompanyActivity</string>
+
+    <!-- Forms String Messages -->
+    <string name="form_field_required">This field is required</string>
+    <string name="form_field_password_confirmation">Password must match</string>
+    <string name="form_field_already_registered">Account already registered</string>
+    <string name="form_field_invalid_email">Invalid email</string>
+
+    <!-- Alert String Messages -->
+    <string name="alert_invalid_login">Invalid username or password</string>
+    <string name="alert_save_success">Changes saved</string>
+    <string name="alert_delete_success">Record deleted</string>
+    <string name="alert_create_success">Entry created</string>
 </resources>

@@ -6,11 +6,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_fitgym_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -29,10 +30,8 @@
             android:value="com.teamgym.fitgym" />
 
         <activity
-            android:name=".activities.MainActivity"
-            android:configChanges="orientation|screenSize|screenLayout"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activities.WelcomeActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,36 +39,47 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.gymcompanies.LoginGymCompanyActivity"
-            android:label="@string/title_activity_login_gym_company"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.teamgym.fitgym.activities.MainActivity" />
-        </activity>
+            android:name=".activities.UserTypeActivity"
+            android:label="User Type" />
         <activity
-            android:name=".activities.clients.LoginClientActivity"
-            android:label="@string/title_activity_login_client"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.teamgym.fitgym.activities.MainActivity" />
-        </activity>
+            android:name=".activities.gymcompany.RegisterGymCompanyActivity"
+            android:label="@string/title_activity_register_gym_company"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.personaltrainers.LoginTrainerActivity"
-            android:label="@string/title_activity_login_trainer"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.teamgym.fitgym.activities.MainActivity" />
-        </activity>
-        <activity
-            android:name=".activities.personaltrainers.MyClientsActivity"
+            android:name=".activities.personaltrainer.MyClientsActivity"
             android:label="@string/title_activity_my_clients"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.personaltrainer.NewClientActivity"
+            android:label="@string/title_activity_new_client"
+            android:parentActivityName=".activities.personaltrainer.MyClientsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.MyClientsActivity" />
+        </activity>
+        <activity
+            android:name=".activities.gymcompany.SubscriptionTypeActivity"
+            android:label="@string/title_activity_subscription_type"
+            android:parentActivityName=".activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.gymclient.NavigationClientActivity"
+            android:label="@string/title_activity_navigation_client" />
+        <activity
+            android:name=".activities.personaltrainer.NavigationTrainerActivity"
+            android:label="@string/title_activity_navigation_trainer" />
+        <activity
+            android:name=".activities.gymcompany.NavigationGymCompanyActivity"
+            android:label="@string/title_activity_navigation_gym_company"></activity>
     </application>
 
 </manifest>
