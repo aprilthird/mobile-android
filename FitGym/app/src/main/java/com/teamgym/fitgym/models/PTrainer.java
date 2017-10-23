@@ -4,8 +4,12 @@ import android.os.Bundle;
 
 import com.orm.SugarRecord;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by GNO on 26/09/2017.
@@ -18,19 +22,23 @@ public class PTrainer {
     String username;
     String address;
     String phoneNumber;
+    String gender;
     String photoUrl;
+    String createdAt;
+    String updatedAt;
     GymCompany gymCompany;
 
     public  PTrainer(){
     }
 
-    public PTrainer(int id, String firstName, String lastName, String username, String address, String phoneNumber, String photoUrl, GymCompany gymCompany) {
+    public PTrainer(int id, String firstName, String lastName, String username, String address, String phoneNumber, String gender, String photoUrl, GymCompany gymCompany) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.gender = gender;
         this.photoUrl = photoUrl;
         this.gymCompany = gymCompany;
     }
@@ -80,6 +88,33 @@ public class PTrainer {
         return this;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public PTrainer setGender(String gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public PTrainer setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public PTrainer setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -107,6 +142,10 @@ public class PTrainer {
         return this;
     }
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
     public Bundle toBundle() {
         Bundle bundle = new Bundle();
         bundle.putInt("id", id);
@@ -115,6 +154,9 @@ public class PTrainer {
         bundle.putString("username", username);
         bundle.putString("address", address);
         bundle.putString("phoneNumber", phoneNumber);
+        bundle.putString("gender", gender);
+        bundle.putString("createdAt", createdAt);
+        bundle.putString("updatedAt", updatedAt);
         bundle.putString("photoUrl", photoUrl);
         bundle.putBundle("gymCompany", gymCompany.toBundle());
         return bundle;
@@ -128,6 +170,8 @@ public class PTrainer {
                 .setUsername(bundle.getString("username"))
                 .setAddress(bundle.getString("address"))
                 .setPhoneNumber(bundle.getString("phoneNumber"))
+                .setCreatedAt(bundle.getString("createdAt"))
+                .setUpdatedAt(bundle.getString("updatedAt"))
                 .setPhotoUrl(bundle.getString("photoUrl"))
                 .setGymCompany(GymCompany.from(bundle.getBundle("gymCompany")));
         return pTrainer;
@@ -136,18 +180,34 @@ public class PTrainer {
     public static PTrainer from(JSONObject jsonPTrainer) {
         PTrainer pTrainer = new PTrainer();
         try {
-            pTrainer.setId(jsonPTrainer.getInt("id"))
+            pTrainer.setId(jsonPTrainer.getInt("personalTrainerId"))
                     .setFirstName(jsonPTrainer.getString("firstName"))
                     .setLastName(jsonPTrainer.getString("lastName"))
                     .setAddress(jsonPTrainer.getString("address"))
                     .setPhoneNumber(jsonPTrainer.getString("phoneNumber"))
                     .setUsername(jsonPTrainer.getString("username"))
-                    .setPhotoUrl(" ");
+                    .setGender(jsonPTrainer.getString("gender"))
+                    .setCreatedAt(jsonPTrainer.getString("createdAt"))
+                    .setUpdatedAt(jsonPTrainer.getString("updatedAt"))
+                    .setPhotoUrl(jsonPTrainer.getString("photoUrl"));
             return pTrainer;
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static List<PTrainer> from(JSONArray jsonPTrainers) {
+        List<PTrainer> trainers = new ArrayList<>();
+        for(int i = 0; i < jsonPTrainers.length(); ++i) {
+            try {
+                trainers.add(PTrainer.from(jsonPTrainers.getJSONObject(i)));
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return trainers;
     }
 }

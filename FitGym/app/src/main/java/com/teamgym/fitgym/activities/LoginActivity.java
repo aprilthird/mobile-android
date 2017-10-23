@@ -22,6 +22,9 @@ import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.activities.gymclient.NavigationClientActivity;
 import com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity;
 import com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity;
+import com.teamgym.fitgym.models.Client;
+import com.teamgym.fitgym.models.GymCompany;
+import com.teamgym.fitgym.models.PTrainer;
 import com.teamgym.fitgym.models.SuscriptionType;
 import com.teamgym.fitgym.networking.FitGymApiService;
 
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 boolean cancel = false;
+                receivedToken = "";
 
                 if(username.trim().isEmpty()) {
                     usernameEditText.setError(getString(R.string.form_field_required));
@@ -66,9 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 if(!cancel) {
                     getToken(view, usernameEditText.getText().toString(), passwordEditText.getText().toString());
                 }
-                else {
+                // TODO Validar Mensaje de Error de Login
+                if(receivedToken.isEmpty())
                     Toast.makeText(view.getContext(), R.string.alert_invalid_login, Toast.LENGTH_SHORT).show();
-                }
             }
         });
 
@@ -93,11 +97,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if("error".equalsIgnoreCase(response.getString("status")))
+                            if ("error".equalsIgnoreCase(response.getString("status")))
                                 Log.d(getString(R.string.app_name), response.getString("message"));
                             receivedToken = response.getString("token");
-                            startActivity(new Intent(view.getContext(), NavigationGymCompanyActivity.class));
-
+                            GymCompany gymCompany = GymCompany.from(response.getJSONObject("gymCompany"));
+                            startActivity((new Intent(view.getContext(), NavigationGymCompanyActivity.class)).putExtras(gymCompany.toBundle()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -123,7 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                             if("error".equalsIgnoreCase(response.getString("status")))
                                 Log.d(getString(R.string.app_name), response.getString("message"));
                             receivedToken = response.getString("token");
-                            startActivity(new Intent(view.getContext(), NavigationTrainerActivity.class));
+                            PTrainer pTrainer = PTrainer.from(response.getJSONObject("personalTrainer"));
+                            startActivity(new Intent(view.getContext(), NavigationTrainerActivity.class).putExtras(pTrainer.toBundle()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -149,7 +154,8 @@ public class LoginActivity extends AppCompatActivity {
                             if("error".equalsIgnoreCase(response.getString("status")))
                                 Log.d(getString(R.string.app_name), response.getString("message"));
                             receivedToken = response.getString("token");
-                            startActivity(new Intent(view.getContext(), NavigationClientActivity.class));
+                            Client client = Client.from(response.getJSONObject("client"));
+                            startActivity(new Intent(view.getContext(), NavigationClientActivity.class).putExtras(client.toBundle()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

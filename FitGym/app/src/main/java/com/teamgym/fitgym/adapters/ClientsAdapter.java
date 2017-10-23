@@ -15,19 +15,19 @@ import java.util.List;
  * Created by GNO on 27/09/2017.
  */
 
-public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder> {
+public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHolder> {
 
     private List<Client> clients ;
 
-    public ClientAdapter(List<Client> clients) {
+    public ClientsAdapter(List<Client> clients) {
         this.clients = clients;
     }
 
-    public ClientAdapter(){
+    public ClientsAdapter(){
     }
 
     @Override
-    public ClientAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ClientsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         return new ViewHolder(LayoutInflater
                 .from(parent.getContext())
@@ -35,7 +35,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ClientAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ClientsAdapter.ViewHolder holder, int position) {
         final Client client =  clients.get(position);
         holder.nameTextView.setText(client.getFirstName()+" " + client.getLastName());
     }
@@ -45,7 +45,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
         return clients.size();
     }
 
-    public ClientAdapter setClients(List<Client> clients)
+    public ClientsAdapter setClients(List<Client> clients)
     {
         this.clients = clients;
         return this;

@@ -12,19 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.adapters.ClientAdapter;
-import com.teamgym.fitgym.models.Client;
-import com.teamgym.fitgym.models.PTrainer;
-import com.teamgym.fitgym.utilities.DataService;
-
-import java.util.List;
+import com.teamgym.fitgym.adapters.ClientsAdapter;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
 public class MyClientsActivity extends AppCompatActivity {
 
     RecyclerView clientsRecyclerView;
-    ClientAdapter clientsAdapter;
+    ClientsAdapter clientsAdapter;
     RecyclerView.LayoutManager clientsLayoutManager;
 
 
@@ -36,7 +31,7 @@ public class MyClientsActivity extends AppCompatActivity {
 
         clientsRecyclerView = (RecyclerView)findViewById(R.id.clientsRecyclerView);
         //List<Client> clientList = (new DataService().getPTrainerClients());
-        clientsAdapter = new ClientAdapter();
+        clientsAdapter = new ClientsAdapter();
         clientsLayoutManager = new GridLayoutManager(this,getSpanCountFor(getResources().getConfiguration()));
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

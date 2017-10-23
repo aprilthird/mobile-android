@@ -59,17 +59,20 @@ public class DataService {
 
 
     //
+
+    /*
     public List<Client> getPTrainerClients(PTrainer trainer){
         //TODO Test function
         return Client.find(Client.class,"pTrainer = ?", String.valueOf(1));
     }
+*/
 
     public List<Goal> getClientGoals(Client client){
         List<Goal> goals = new ArrayList<>();
         //TODO query
         return goals;
     }
-
+    /*
     public boolean addClient(Client client)
     {
         try {
@@ -81,7 +84,7 @@ public class DataService {
             return false;
         }
     }
-
+*/
     public boolean LoginTrainer()
     {
         //TODO populate data related to the user from backend on success

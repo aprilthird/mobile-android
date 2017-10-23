@@ -20,18 +20,18 @@ public class GymCompany{
     private String companyName;
     private String username;
     private String phoneNumber;
-    private String address;
+    private String createdAt;
+    private String updatedAt;
     private String logoUrl;
 
     public GymCompany() {
     }
 
-    public GymCompany(int id, String companyName, String username, String phoneNumber, String address, String logoUrl) {
+    public GymCompany(int id, String companyName, String username, String phoneNumber, String logoUrl) {
         this.id = id;
         this.companyName = companyName;
         this.username = username;
         this.phoneNumber = phoneNumber;
-        this.address = address;
         this.logoUrl = logoUrl;
     }
 
@@ -44,11 +44,11 @@ public class GymCompany{
         return this;
     }
 
-    public String getcompanyName() {
+    public String getCompanyName() {
         return companyName;
     }
 
-    public GymCompany setcompanyName(String companyName) {
+    public GymCompany setCompanyName(String companyName) {
         this.companyName = companyName;
         return this;
     }
@@ -62,21 +62,12 @@ public class GymCompany{
         return this;
     }
 
-    public String getphoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public GymCompany setphoneNumber(String phoneNumber) {
+    public GymCompany setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public GymCompany setAddress(String address) {
-        this.address = address;
         return this;
     }
 
@@ -89,13 +80,32 @@ public class GymCompany{
         return this;
     }
 
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public GymCompany setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public GymCompany setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     public Bundle toBundle() {
         Bundle bundle = new Bundle();
         bundle.putInt("id", id);
         bundle.putString("companyName", companyName);
         bundle.putString("username", username);
-        bundle.putString("address", address);
         bundle.putString("phoneNumber", phoneNumber);
+        bundle.putString("createdAt", createdAt);
+        bundle.putString("updatedAt", updatedAt);
         bundle.putString("logoUrl", logoUrl);
         return bundle;
     }
@@ -103,23 +113,26 @@ public class GymCompany{
     public static GymCompany from(Bundle bundle) {
         GymCompany gymCompany = new GymCompany();
         gymCompany.setId(bundle.getInt("id"))
-                .setcompanyName(bundle.getString("companyName"))
+                .setCompanyName(bundle.getString("companyName"))
                 .setUsername(bundle.getString("username"))
-                .setphoneNumber(bundle.getString("phoneNumber"))
-                .setAddress(bundle.getString("address"))
-                .setLogoUrl(" ");
+                .setPhoneNumber(bundle.getString("phoneNumber"))
+                .setCreatedAt(bundle.getString("createdAt"))
+                .setUpdatedAt(bundle.getString("updatedAt"))
+                .setLogoUrl(bundle.getString("logoUrl"));
         return gymCompany;
     }
 
     public static GymCompany from(JSONObject jsonGymCompany) {
         GymCompany gymCompany = new GymCompany();
         try {
-            gymCompany.setId(jsonGymCompany.getInt("id"))
-                    .setcompanyName(jsonGymCompany.getString("name"))
-                    .setAddress(jsonGymCompany.getString("address"))
+            gymCompany.setId(jsonGymCompany.getInt("gymCompanyId"))
+                    .setCompanyName(jsonGymCompany.getString("name"))
                     .setUsername(jsonGymCompany.getString("username"))
-                    .setphoneNumber(jsonGymCompany.getString("phoneNumber"))
-                    .setLogoUrl("");
+                    .setPhoneNumber(jsonGymCompany.getString("phoneNumber"))
+                    .setCreatedAt(jsonGymCompany.getString("createdAt"))
+                    .setUpdatedAt(jsonGymCompany.getString("updatedAt"))
+                    .setLogoUrl(jsonGymCompany.getString("urlLogo"));
+            return gymCompany;
         }
         catch (JSONException e) {
             e.printStackTrace();

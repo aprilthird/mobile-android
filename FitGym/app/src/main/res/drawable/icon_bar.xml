@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:right="5dp">
+        <bitmap
+            android:gravity="left"
+            android:src="@mipmap/ic_fitgym_icon"
+            tools:ignore="VectorDrawableCompat"/>
+    </item>
+</layer-list>
