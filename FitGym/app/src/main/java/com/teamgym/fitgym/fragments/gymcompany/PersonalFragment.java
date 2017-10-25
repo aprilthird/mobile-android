@@ -37,12 +37,7 @@ public class PersonalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*
-        personalTabHost = new FragmentTabHost(getActivity());
-        personalTabHost.setup(getActivity(), getChildFragmentManager());
-        personalTabHost.addTab(personalTabHost.newTabSpec("Trainers").setIndicator("Trainers"), new TrainersFragment().getClass(), null);
-        personalTabHost.addTab(personalTabHost.newTabSpec("Clients").setIndicator("Clients"), new ClientsFragment().getClass(), null);
-        */
+
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -81,6 +76,7 @@ public class PersonalFragment extends Fragment {
             mFragmentTitleList.add(title);
         }
 
+        
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);

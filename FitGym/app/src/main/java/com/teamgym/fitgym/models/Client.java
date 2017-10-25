@@ -88,6 +88,10 @@ public class Client {
         return this;
     }
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
     public String getPhotoUrl() {
         return photoUrl;
     }
@@ -223,12 +227,14 @@ public class Client {
                     .setPhotoUrl(jsonClient.getString("photoUrl"))
                     .setHeight(BigDecimal.valueOf(jsonClient.getDouble("height")))
                     .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonClient.getString("birthDate"))));
+            /*
             PTrainerApiService.getTrainer(jsonClient.getInt("personalTrainerId"), new IActionPostServiceResult<PTrainer>() {
                 @Override
                 public void execute(PTrainer result) {
                     client.setpTrainer(result);
                 }
             });
+            */
             // TODO probar esto
         }
         catch (JSONException | ParseException e) {
