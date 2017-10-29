@@ -62,6 +62,7 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
             @Override
             public void onClick(View view) {
                 // TODO View Trainer Detail
+
             }
         });
     }

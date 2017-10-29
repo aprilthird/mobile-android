@@ -1,4 +1,4 @@
-package com.teamgym.fitgym.networking;
+package com.teamgym.fitgym.network;
 
 /**
  * Created by Usuario on 18/10/2017.

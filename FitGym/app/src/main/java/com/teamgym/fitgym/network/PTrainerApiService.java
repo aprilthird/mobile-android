@@ -1,4 +1,4 @@
-package com.teamgym.fitgym.networking;
+package com.teamgym.fitgym.network;
 
 import android.content.res.Resources;
 import android.util.Log;
@@ -112,7 +112,7 @@ public class PTrainerApiService {
     }
 
     public static void getTrainer(int personalTrainerId, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS)
+        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS + "/{id}")
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addPathParameter("id", String.valueOf(personalTrainerId))
@@ -125,8 +125,8 @@ public class PTrainerApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            trainer = PTrainer.from(response.getJSONObject("personalTrainers"));
-                            action.execute(trainers);
+                            trainer = PTrainer.from(response.getJSONObject("personalTrainer"));
+                            action.execute(trainer);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();

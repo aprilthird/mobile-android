@@ -1,6 +1,5 @@
 package com.teamgym.fitgym.adapters;
 
-import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 import com.androidnetworking.widget.ANImageView;
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.models.Client;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -47,7 +44,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHold
         holder.photoANImageView.setImageUrl(client.getPhotoUrl());
         holder.fullNameTextView.setText(client.getFullName());
         holder.usernameTextView.setText(client.getUsername());
-        //holder.trainerNameTextView.setText(String.format(Resources.getSystem().getString(R.string.trained_by_trainer), client.getpTrainer().getFirstName()));
+        holder.trainerNameTextView.setText(String.format(holder.trainerNameTextView.getContext().getString(R.string.trained_by_trainer), client.getpTrainer().getFirstName()));
         if(holder.fullNameTextView.getText().length() > 24)
             holder.fullNameTextView.setText(client.getFullName().substring(0, 19).concat("..."));
         holder.genderImageView.setImageResource((client.getGender().equalsIgnoreCase("M"))
@@ -65,8 +62,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHold
         return clients.size();
     }
 
-    public ClientsAdapter setClients(List<Client> clients)
-    {
+    public ClientsAdapter setClients(List<Client> clients) {
         this.clients = clients;
         return this;
     }
@@ -94,4 +90,3 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHold
         }
     }
 }
-

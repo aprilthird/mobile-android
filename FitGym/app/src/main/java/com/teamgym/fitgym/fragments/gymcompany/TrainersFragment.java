@@ -11,9 +11,10 @@ import android.view.ViewGroup;
 
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.adapters.PTrainersAdapter;
+import com.teamgym.fitgym.models.GymCompany;
 import com.teamgym.fitgym.models.PTrainer;
-import com.teamgym.fitgym.networking.IActionPostServiceResult;
-import com.teamgym.fitgym.networking.PTrainerApiService;
+import com.teamgym.fitgym.network.IActionPostServiceResult;
+import com.teamgym.fitgym.network.PTrainerApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class TrainersFragment extends Fragment {
     PTrainersAdapter trainersAdapter;
     RecyclerView.LayoutManager trainersLayoutManager;
     List<PTrainer> trainers;
+    GymCompany gymCompany;
 
     public TrainersFragment() {
         // Required empty public constructor
@@ -37,6 +39,7 @@ public class TrainersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_trainers, container, false);
         trainersRecyclerView = (RecyclerView) view.findViewById(R.id.trainersRecyclerView);
         trainers = new ArrayList<>();
+        gymCompany = GymCompany.from(getActivity().getIntent().getExtras());
         trainersAdapter = new PTrainersAdapter(trainers);
         trainersLayoutManager = new GridLayoutManager(view.getContext(), 2);
         trainersRecyclerView.setAdapter(trainersAdapter);
@@ -46,7 +49,7 @@ public class TrainersFragment extends Fragment {
     }
 
     private void updateTrainers() {
-        PTrainerApiService.getTrainers(new IActionPostServiceResult<List<PTrainer>>() {
+        PTrainerApiService.getTrainers(gymCompany.getId(), new IActionPostServiceResult<List<PTrainer>>() {
             @Override
             public void execute(List<PTrainer> result) {
                 trainers = result;

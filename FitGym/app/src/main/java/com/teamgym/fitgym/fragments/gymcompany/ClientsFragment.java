@@ -1,6 +1,7 @@
 package com.teamgym.fitgym.fragments.gymcompany;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,10 +13,14 @@ import android.view.ViewGroup;
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.adapters.ClientsAdapter;
 import com.teamgym.fitgym.models.Client;
-import com.teamgym.fitgym.networking.ClientApiService;
-import com.teamgym.fitgym.networking.IActionPostServiceResult;
+import com.teamgym.fitgym.models.GymCompany;
+import com.teamgym.fitgym.models.PTrainer;
+import com.teamgym.fitgym.network.ClientApiService;
+import com.teamgym.fitgym.network.IActionPostServiceResult;
+import com.teamgym.fitgym.network.PTrainerApiService;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,6 +31,8 @@ public class ClientsFragment extends Fragment {
     ClientsAdapter clientsAdapter;
     RecyclerView.LayoutManager clientsLayoutManager;
     List<Client> clients;
+    List<PTrainer> trainers;
+    GymCompany gymCompany;
 
     public ClientsFragment() {
         // Required empty public constructor
@@ -37,7 +44,9 @@ public class ClientsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_clients, container, false);
         clientsRecyclerView = (RecyclerView) view.findViewById(R.id.clientsRecyclerView);
+        trainers = new ArrayList<>();
         clients = new ArrayList<>();
+        gymCompany = GymCompany.from(getActivity().getIntent().getExtras());
         clientsAdapter = new ClientsAdapter(clients);
         clientsLayoutManager = new GridLayoutManager(view.getContext(), 2);
         clientsRecyclerView.setAdapter(clientsAdapter);
@@ -47,12 +56,21 @@ public class ClientsFragment extends Fragment {
     }
 
     private void updateClients() {
-        ClientApiService.getClients(new IActionPostServiceResult<List<Client>>() {
+        PTrainerApiService.getTrainers(gymCompany.getId(), new IActionPostServiceResult<List<PTrainer>>() {
             @Override
-            public void execute(List<Client> result) {
-                clients = result;
-                clientsAdapter.setClients(clients);
-                clientsAdapter.notifyDataSetChanged();
+            public void execute(List<PTrainer> result) {
+                for(final PTrainer pt : result) {
+                    ClientApiService.getClientsByTrainerId(pt, new IActionPostServiceResult<List<Client>>() {
+                        @Override
+                        public void execute(List<Client> result) {
+                            clients.addAll(result);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                                clients.stream().sorted(Comparator.comparing(Client::getCreatedAt));
+                            clientsAdapter.setClients(clients);
+                            clientsAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
         });
     }

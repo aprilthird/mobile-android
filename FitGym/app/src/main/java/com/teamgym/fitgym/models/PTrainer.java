@@ -2,13 +2,14 @@ package com.teamgym.fitgym.models;
 
 import android.os.Bundle;
 
-import com.orm.SugarRecord;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class PTrainer {
     String photoUrl;
     String createdAt;
     String updatedAt;
+    Date birthDate;
     GymCompany gymCompany;
 
     public  PTrainer(){
@@ -133,6 +135,15 @@ public class PTrainer {
         return this;
     }
 
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public PTrainer setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
     public GymCompany getGymCompany() {
         return gymCompany;
     }
@@ -157,6 +168,7 @@ public class PTrainer {
         bundle.putString("gender", gender);
         bundle.putString("createdAt", createdAt);
         bundle.putString("updatedAt", updatedAt);
+        bundle.putString("birthDate", birthDate.toString());
         bundle.putString("photoUrl", photoUrl);
         bundle.putBundle("gymCompany", gymCompany.toBundle());
         return bundle;
@@ -164,17 +176,24 @@ public class PTrainer {
 
     public static PTrainer from(Bundle bundle) {
         PTrainer pTrainer = new PTrainer();
-        pTrainer.setId(bundle.getInt("id"))
-                .setFirstName(bundle.getString("firstName"))
-                .setLastName(bundle.getString("lastName"))
-                .setUsername(bundle.getString("username"))
-                .setAddress(bundle.getString("address"))
-                .setPhoneNumber(bundle.getString("phoneNumber"))
-                .setCreatedAt(bundle.getString("createdAt"))
-                .setUpdatedAt(bundle.getString("updatedAt"))
-                .setPhotoUrl(bundle.getString("photoUrl"))
-                .setGymCompany(GymCompany.from(bundle.getBundle("gymCompany")));
-        return pTrainer;
+        try {
+            pTrainer.setId(bundle.getInt("id"))
+                    .setFirstName(bundle.getString("firstName"))
+                    .setLastName(bundle.getString("lastName"))
+                    .setUsername(bundle.getString("username"))
+                    .setAddress(bundle.getString("address"))
+                    .setPhoneNumber(bundle.getString("phoneNumber"))
+                    .setBirthDate(((new SimpleDateFormat("yyyy-MM-dd")).parse(bundle.getString("birthDate"))))
+                    .setCreatedAt(bundle.getString("createdAt"))
+                    .setUpdatedAt(bundle.getString("updatedAt"))
+                    .setPhotoUrl(bundle.getString("photoUrl"))
+                    .setGymCompany(GymCompany.from(bundle.getBundle("gymCompany")));
+            return pTrainer;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static PTrainer from(JSONObject jsonPTrainer) {
@@ -189,10 +208,11 @@ public class PTrainer {
                     .setGender(jsonPTrainer.getString("gender"))
                     .setCreatedAt(jsonPTrainer.getString("createdAt"))
                     .setUpdatedAt(jsonPTrainer.getString("updatedAt"))
+                    .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonPTrainer.getString("birthDate"))))
                     .setPhotoUrl(jsonPTrainer.getString("photoUrl"));
             return pTrainer;
         }
-        catch (JSONException e) {
+        catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
         return null;

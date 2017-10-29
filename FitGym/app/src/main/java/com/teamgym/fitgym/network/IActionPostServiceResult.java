@@ -1,6 +1,4 @@
-package com.teamgym.fitgym.networking;
-
-import java.util.List;
+package com.teamgym.fitgym.network;
 
 /**
  * Created by Usuario on 23/10/2017.

@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.fragments.gymcompany.AccountFragment;
 import com.teamgym.fitgym.fragments.gymcompany.CompanyFragment;
@@ -29,7 +28,7 @@ public class NavigationGymCompanyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_gym_company);
-
+        getString(R.string.trained_by_trainer);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_gym_company);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportActionBar().setTitle(R.string.app_name);

@@ -2,10 +2,6 @@ package com.teamgym.fitgym.models;
 
 import android.os.Bundle;
 
-import com.orm.SugarRecord;
-import com.teamgym.fitgym.networking.IActionPostServiceResult;
-import com.teamgym.fitgym.networking.PTrainerApiService;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +23,7 @@ public class Client {
     Date birthDate;
     BigDecimal height;
     PTrainer pTrainer;
+    String createdAt, updatedAt;
 
     public Client(){}
 
@@ -137,6 +134,24 @@ public class Client {
         return this;
     }
 
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public Client setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Client setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     public PTrainer getpTrainer() {
         return pTrainer;
     }
@@ -167,6 +182,8 @@ public class Client {
         bundle.putString("gender", gender);
         bundle.putString("photoUrl", photoUrl);
         bundle.putString("height", height.toString());
+        bundle.putString("createdAt", createdAt);
+        bundle.putString("updatedAt", updatedAt);
         bundle.putBundle("trainer", pTrainer.toBundle());
         return bundle;
     }
@@ -185,11 +202,12 @@ public class Client {
                     .setHeight(new BigDecimal(bundle.getString("height")))
                     .setBirthDate(((new SimpleDateFormat("yyyy-MM-dd")).parse(bundle.getString("birthDate"))))
                     .setpTrainer(PTrainer.from(bundle.getBundle("trainer")));
+            return client;
         }
         catch (ParseException e) {
             e.printStackTrace();
         }
-        return client;
+        return null;
     }
 
     public static Client from(JSONObject jsonClient, PTrainer trainer) {
@@ -207,11 +225,12 @@ public class Client {
                     .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonClient.getString("birthDate"))))
                     .setpTrainer(trainer);
             // TODO probar esto
+            return client;
         }
         catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
-        return client;
+        return null;
     }
 
     public static Client from(JSONObject jsonClient) {
@@ -225,22 +244,17 @@ public class Client {
                     .setAddress(jsonClient.getString("address"))
                     .setGender(jsonClient.getString("gender"))
                     .setPhotoUrl(jsonClient.getString("photoUrl"))
+                    .setCreatedAt(jsonClient.getString("createdAt"))
+                    .setUpdatedAt(jsonClient.getString("updatedAt"))
                     .setHeight(BigDecimal.valueOf(jsonClient.getDouble("height")))
                     .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonClient.getString("birthDate"))));
-            /*
-            PTrainerApiService.getTrainer(jsonClient.getInt("personalTrainerId"), new IActionPostServiceResult<PTrainer>() {
-                @Override
-                public void execute(PTrainer result) {
-                    client.setpTrainer(result);
-                }
-            });
-            */
             // TODO probar esto
+            return client;
         }
         catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
-        return client;
+        return null;
     }
 
     public static List<Client> from(JSONArray jsonClients, PTrainer trainer) {

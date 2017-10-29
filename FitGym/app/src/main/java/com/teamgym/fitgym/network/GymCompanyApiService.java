@@ -1,4 +1,4 @@
-package com.teamgym.fitgym.networking;
+package com.teamgym.fitgym.network;
 
 import android.util.Log;
 

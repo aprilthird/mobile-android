@@ -1,4 +1,4 @@
-package com.teamgym.fitgym.networking;
+package com.teamgym.fitgym.network;
 
 import android.content.res.Resources;
 import android.util.Log;
@@ -9,6 +9,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.models.Client;
+import com.teamgym.fitgym.models.PTrainer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,6 +99,36 @@ public class ClientApiService {
                                 return;
                             }
                             clients = Client.from(response.getJSONArray("clients"));
+                            action.execute(clients);
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(Resources.getSystem().getString(R.string.app_name), anError.getLocalizedMessage());
+                    }
+                });
+        return clients;
+    }
+
+    public static List<Client> getClientsByTrainerId (final PTrainer trainer, final IActionPostServiceResult action) {
+        AndroidNetworking.get(FitGymApiService.CLIENTS)
+                .setTag(R.string.app_name)
+                .setPriority(Priority.LOW)
+                .addQueryParameter("personalTrainerId", String.valueOf(trainer.getId()))
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if ("error".equalsIgnoreCase("status")) {
+                                Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
+                                return;
+                            }
+                            clients = Client.from(response.getJSONArray("clients"), trainer);
                             action.execute(clients);
                         }
                         catch (JSONException e) {
