@@ -1,5 +1,7 @@
 package com.teamgym.fitgym.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.activities.gymclient.AboutClientActivity;
 import com.teamgym.fitgym.models.Client;
 
 import java.util.List;
@@ -52,7 +55,10 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHold
         holder.moreTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO View Client Detail
+                Context context = view.getContext();
+                Intent intent = new Intent(context, AboutClientActivity.class);
+                intent.putExtras(client.toBundle());
+                context.startActivity(intent);
             }
         });
     }

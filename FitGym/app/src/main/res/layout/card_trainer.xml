@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,52 +13,57 @@
         android:layout_margin="@dimen/default_margin">
         <com.androidnetworking.widget.ANImageView
             android:id="@+id/photoANImageView"
-            android:layout_width="match_parent"
+            android:layout_width="344dp"
             android:layout_height="120dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteX="8dp" />
         <TextView
             android:id="@+id/fullNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/photoANImageView"
+            app:layout_constraintTop_toBottomOf="@+id/photoANImageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/default_margin"
             android:text="Sample Name"
             android:textAlignment="center"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="140dp" />
         <TextView
             android:id="@+id/usernameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fullNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/default_margin"
             android:text="Username"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="153dp" />
         <RatingBar
             android:id="@+id/rateRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/usernameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/default_margin"
             style="?android:attr/ratingBarStyleSmall"
             android:numStars="5"
-            android:rating="4"/>
+            android:rating="4"
+            tools:layout_editor_absoluteX="144dp" />
         <ImageView
             android:id="@+id/genderImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/rateRatingBar"
+            app:layout_constraintTop_toBottomOf="@+id/rateRatingBar"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_margin="@dimen/default_margin"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            app:srcCompat="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteX="12dp" />
         <TextView
             android:id="@+id/moreTextView"
             android:layout_width="wrap_content"
@@ -66,6 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="More"
             android:textColor="@color/colorAccent"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true"
+            tools:layout_editor_absoluteX="326dp" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

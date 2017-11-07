@@ -79,7 +79,32 @@
             android:label="@string/title_activity_navigation_trainer" />
         <activity
             android:name=".activities.gymcompany.NavigationGymCompanyActivity"
-            android:label="@string/title_activity_navigation_gym_company"></activity>
+            android:label="@string/title_activity_navigation_gym_company" />
+        <activity
+            android:name=".activities.gymclient.AboutClientActivity"
+            android:label="@string/title_activity_about_client"
+            android:parentActivityName=".activities.gymclient.NavigationClientActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.gymclient.NavigationClientActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.AboutPersonalTrainerActivity"
+            android:label="@string/title_activity_about_personal_trainer"
+            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.AddFoodActivity"
+            android:label="@string/title_activity_add_food"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.gymclient.CredentialsActivity" />
+        <activity android:name=".activities.gymclient.BodyMeasurementActivity" />
+        <activity android:name=".activities.gymclient.FoodActivity"></activity>
     </application>
 
 </manifest>

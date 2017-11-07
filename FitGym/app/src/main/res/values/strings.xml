@@ -44,8 +44,17 @@
     <string name="title_gym_company_personal">My Personal</string>
     <string name="title_gym_company_company">My Company</string>
     <string name="title_gym_company_account">My Account</string>
+    <string name="title_gym_company_settings">Settings</string>
+    <string name="title_trainer_food_diet">Food Diet</string>
+    <string name="title_trainer_routines">Routines</string>
+    <string name="title_trainer_evaluation">Evaluation</string>
+    <string name="title_trainer_account">My Account</string>
     <string name="title_trainer_clients">My Clients</string>
     <string name="title_trainer_activity">My Activity</string>
+    <string name="title_client_diet">Food Diet</string>
+    <string name="title_client_routine">Routines</string>
+    <string name="title_client_account">Account</string>
+    <string name="title_client_eva">Evaluation</string>
 
     <!-- Forms String Messages -->
     <string name="form_field_required">This field is required</string>
@@ -61,4 +70,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_about_client">About Client</string>
+    <string name="title_activity_about_personal_trainer">About Personal Trainer</string>
+    <string name="title_activity_add_food">AddFoodActivity</string>
 </resources>

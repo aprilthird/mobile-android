@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * Created by GNO on 26/09/2017.
  */
 
-public class Food extends SugarRecord {
+public class Food {
     Diet diet;
     TypeMeal typeMeal;
     QMeasurement qMeasurement;

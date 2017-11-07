@@ -1,5 +1,7 @@
 package com.teamgym.fitgym.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.activities.personaltrainer.AboutPersonalTrainerActivity;
 import com.teamgym.fitgym.models.PTrainer;
 
 import org.w3c.dom.Text;
@@ -61,7 +64,10 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
         holder.moreTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO View Trainer Detail
+                Context context = view.getContext();
+                Intent intent = new Intent(context, AboutPersonalTrainerActivity.class);
+                intent.putExtras(trainer.toBundle());
+                context.startActivity(intent);
 
             }
         });

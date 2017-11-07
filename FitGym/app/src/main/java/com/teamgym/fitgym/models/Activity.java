@@ -2,6 +2,7 @@ package com.teamgym.fitgym.models;
 
 import com.orm.SugarRecord;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -51,5 +52,13 @@ public class Activity extends SugarRecord {
 
     public void setEstablishment(Establishment establishment) {
         this.establishment = establishment;
+    }
+    public String getStartTimeAsString() {
+
+        return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")).format(startTime);
+    }
+    public String getEndTimeAsString() {
+
+        return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")).format(endTime);
     }
 }
