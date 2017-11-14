@@ -1,0 +1,156 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.teamgym.fitgym.fragments.client.AccountClientFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_margin">
+
+        <TextView
+            android:id="@+id/titleinfoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/regular_small_text_size"
+            android:text="Client Information" />
+
+
+        <TextView
+            android:id="@+id/titlenameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleinfoTextView"
+            android:textSize="20sp"
+            android:text="Name"/>
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toEndOf="@+id/titlenameTextView"
+            app:layout_constraintTop_toBottomOf="@id/titleinfoTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:text="Sample Name" />
+
+        <TextView
+            android:id="@+id/titlelastnameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titlenameTextView"
+            android:textSize="20sp"
+            android:text="Last Name"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <TextView
+            android:id="@+id/lastnameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toEndOf="@+id/titlelastnameTextView"
+            app:layout_constraintTop_toBottomOf="@id/titlenameTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:text="Sample Last Name" />
+
+        <TextView
+            android:id="@+id/titleemailTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titlelastnameTextView"
+            android:textSize="20sp"
+            android:text="Email"/>
+
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toEndOf="@+id/titleemailTextView"
+            app:layout_constraintTop_toBottomOf="@id/titlelastnameTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:text="cliente1@gmail.com" />
+
+        <TextView
+            android:id="@+id/titleaddressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleemailTextView"
+            android:textSize="20sp"
+            android:text="Address" />
+
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toEndOf="@+id/titleaddressTextView"
+            app:layout_constraintTop_toBottomOf="@id/titleemailTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:text="Sample Address" />
+
+        <TextView
+            android:id="@+id/titleobjTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleaddressTextView"
+            android:textSize="20sp"
+            android:text="Objective"/>
+
+        <TextView
+            android:id="@+id/objTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toEndOf="@+id/titleobjTextView"
+            app:layout_constraintTop_toBottomOf="@id/titleaddressTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:text="Sample Objective" />
+
+        <Button
+            android:id="@+id/credentialsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleobjTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Credentials"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <Button
+            android:id="@+id/measureButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/double_big_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleobjTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Body Measurement"
+            tools:layout_editor_absoluteX="170dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

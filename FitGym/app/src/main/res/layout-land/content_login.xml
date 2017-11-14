@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.teamgym.fitgym.activities.WelcomeActivity"
+    android:background="@drawable/backrepeat"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="168dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/ic_fitgym_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/usernameTexInputLayout"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/usernameTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_account"
+            android:textSize="10dp"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTexInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/passwordTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/login_password"
+            android:textSize="10dp"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signInButton"
+        android:layout_width="168dp"
+        android:layout_height="28dp"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/sign_in_button_message"
+        android:textSize="8dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        tools:layout_editor_absoluteX="171dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/registerMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/signInButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="10sp"
+        android:text="@string/register_message"
+        tools:layout_editor_absoluteX="122dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signUpButton"
+        android:layout_width="168dp"
+        android:layout_height="28dp"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/registerMessageTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/sign_up_button_message"
+        android:textSize="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@+id/visitPageTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/information_message"
+        android:textSize="10sp"
+        tools:layout_editor_absoluteX="133dp"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:id="@+id/visitPageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/link_to_landing"
+        android:textSize="10sp"
+        android:textColor="@color/colorAccent"
+        tools:layout_editor_absoluteX="125dp" />
+
+</android.support.constraint.ConstraintLayout>

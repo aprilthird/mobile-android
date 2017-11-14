@@ -25,8 +25,9 @@ public class PTrainer {
     String phoneNumber;
     String gender;
     String photoUrl;
-    String createdAt;
+    Date createdAt;
     String updatedAt;
+    String password;
     Date birthDate;
     GymCompany gymCompany;
 
@@ -99,11 +100,11 @@ public class PTrainer {
         return this;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public PTrainer setCreatedAt(String createdAt) {
+    public PTrainer setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -153,8 +154,39 @@ public class PTrainer {
         return this;
     }
 
+    public String getShortFullName() {
+        return (getFullName().length() > 16) ? getFullName().substring(0, 14).concat("...") : getFullName();
+    }
+
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public String getGenderAsFullyString() {
+        return (gender.equals("M") ? "Male" : "Female");
+    }
+
+    public String getBirthDateAsString() {
+        return (new SimpleDateFormat("EEE MMM dd, yyyy")).format(birthDate);
+    }
+
+    public String getCreatedAtAsString() {
+        return (new SimpleDateFormat("EEE MMM dd, yyyy")).format(createdAt);
+    }
+
+    public String getBirthDateAsJSONDate() {
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(birthDate);
+    }
+
+    public boolean equals (PTrainer trainer) {
+        if (trainer == null) return false;
+        return firstName.equals(trainer.firstName)
+                && lastName.equals(trainer.lastName)
+                && username.equals(trainer.username)
+                && birthDate.equals(trainer.birthDate)
+                && phoneNumber.equals(trainer.phoneNumber)
+                && gender.equals(trainer.gender)
+                && address.equals(trainer.getAddress());
     }
 
     public Bundle toBundle() {
@@ -166,7 +198,7 @@ public class PTrainer {
         bundle.putString("address", address);
         bundle.putString("phoneNumber", phoneNumber);
         bundle.putString("gender", gender);
-        bundle.putString("createdAt", createdAt);
+        bundle.putString("createdAt", createdAt.toString());
         bundle.putString("updatedAt", updatedAt);
         bundle.putString("birthDate", birthDate.toString());
         bundle.putString("photoUrl", photoUrl);
@@ -183,10 +215,11 @@ public class PTrainer {
                     .setUsername(bundle.getString("username"))
                     .setAddress(bundle.getString("address"))
                     .setPhoneNumber(bundle.getString("phoneNumber"))
-                    .setBirthDate(((new SimpleDateFormat("yyyy-MM-dd")).parse(bundle.getString("birthDate"))))
-                    .setCreatedAt(bundle.getString("createdAt"))
+                    .setBirthDate((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(bundle.getString("birthDate"))))
+                    .setCreatedAt((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(bundle.getString("createdAt"))))
                     .setUpdatedAt(bundle.getString("updatedAt"))
                     .setPhotoUrl(bundle.getString("photoUrl"))
+                    .setGender(bundle.getString("gender"))
                     .setGymCompany(GymCompany.from(bundle.getBundle("gymCompany")));
             return pTrainer;
         }
@@ -206,13 +239,57 @@ public class PTrainer {
                     .setPhoneNumber(jsonPTrainer.getString("phoneNumber"))
                     .setUsername(jsonPTrainer.getString("username"))
                     .setGender(jsonPTrainer.getString("gender"))
-                    .setCreatedAt(jsonPTrainer.getString("createdAt"))
+                    .setCreatedAt((new SimpleDateFormat("yyyy-MM-dd").parse(jsonPTrainer.getString("createdAt"))))
                     .setUpdatedAt(jsonPTrainer.getString("updatedAt"))
                     .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonPTrainer.getString("birthDate"))))
                     .setPhotoUrl(jsonPTrainer.getString("photoUrl"));
             return pTrainer;
         }
         catch (JSONException | ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static PTrainer from(JSONObject jsonPTrainer, GymCompany gymCompany) {
+        PTrainer pTrainer = new PTrainer();
+        try {
+            pTrainer.setId(jsonPTrainer.getInt("personalTrainerId"))
+                    .setFirstName(jsonPTrainer.getString("firstName"))
+                    .setLastName(jsonPTrainer.getString("lastName"))
+                    .setAddress(jsonPTrainer.getString("address"))
+                    .setPhoneNumber(jsonPTrainer.getString("phoneNumber"))
+                    .setUsername(jsonPTrainer.getString("username"))
+                    .setGender(jsonPTrainer.getString("gender"))
+                    .setCreatedAt((new SimpleDateFormat("yyyy-MM-dd").parse(jsonPTrainer.getString("createdAt"))))
+                    .setUpdatedAt(jsonPTrainer.getString("updatedAt"))
+                    .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonPTrainer.getString("birthDate"))))
+                    .setPhotoUrl(jsonPTrainer.getString("photoUrl"))
+                    .setGymCompany(gymCompany);
+            return pTrainer;
+        }
+        catch (JSONException | ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public JSONObject toJSONObject() {
+        JSONObject jsonTrainer = new JSONObject();
+        try {
+            jsonTrainer.put("firstName", firstName)
+                    .put("lastName", lastName)
+                    .put("username", username)
+                    .put("password", password)
+                    .put("phoneNumber", phoneNumber)
+                    .put("address", address)
+                    .put("gymCompanyId", gymCompany.getId())
+                    .put("birthDate", getBirthDateAsJSONDate())
+                    .put("gender", gender)
+                    .put("photoUrl", photoUrl.isEmpty() ? "" : photoUrl);
+            return jsonTrainer;
+        }
+        catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
@@ -229,5 +306,27 @@ public class PTrainer {
             }
         }
         return trainers;
+    }
+
+    public static List<PTrainer> from(JSONArray jsonPTrainers, GymCompany gymCompany) {
+        List<PTrainer> trainers = new ArrayList<>();
+        for(int i = 0; i < jsonPTrainers.length(); ++i) {
+            try {
+                trainers.add(PTrainer.from(jsonPTrainers.getJSONObject(i), gymCompany));
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return trainers;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public PTrainer setPassword(String password) {
+        this.password = password;
+        return this;
     }
 }

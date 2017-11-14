@@ -61,6 +61,9 @@
     <string name="form_field_password_confirmation">Password must match</string>
     <string name="form_field_already_registered">Account already registered</string>
     <string name="form_field_invalid_email">Invalid email</string>
+    <string name="form_field_invalid">Invalid input</string>
+    <string name="form_field_min_length">Must have %1$s characters at least</string>
+    <string name="form_field_max_length">Must have less than %1$s characters</string>
 
     <!-- Alert String Messages -->
     <string name="alert_invalid_login">Invalid username or password</string>
@@ -68,9 +71,39 @@
     <string name="alert_delete_success">Record deleted</string>
     <string name="alert_create_success">Entry created</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Message Buttons Strings -->
+    <string name="message_button_ok">OK</string>
+    <string name="message_button_yes">Yes</string>
+    <string name="message_button_no">No</string>
+    <string name="message_button_continue">Continue</string>
+    <string name="message_button_got_it">Got it</string>
+
     <string name="title_activity_about_client">About Client</string>
     <string name="title_activity_about_personal_trainer">About Personal Trainer</string>
     <string name="title_activity_add_food">AddFoodActivity</string>
+    <string name="title_activity_add_edit_personal_trainer">AddEditPersonalTrainer</string>
+
+    <!-- Input Forms Strings -->
+    <string name="hello_blank_fragment">Hello Blank Fragment!</string>
+    <string name="input_trainer_first_name">First Name</string>
+    <string name="input_trainer_last_name">Last Name</string>
+    <string name="input_trainer_username">Username</string>
+    <string name="input_trainer_password">Password</string>
+    <string name="input_trainer_confirm_password">Confirm Password</string>
+    <string name="input_trainer_gender">Gender</string>
+    <string name="input_trainer_birth_date">Birth Date</string>
+    <string name="input_trainer_address">Address</string>
+    <string name="input_trainer_phone_number">Phone Number</string>
+    <string name="input_trainer_created_at">Account Creation</string>
+    <string name="input_trainer_sample_first_name">Sample Name</string>
+    <string name="input_trainer_sample_last_name">Sample Name</string>
+    <string name="input_trainer_sample_username">Sample Username</string>
+    <string name="input_trainer_sample_gender">Gender</string>
+    <string name="spinner_trainer_gender">Select Gender</string>
+    <string name="input_trainer_sample_birth_date">Sample Date</string>
+    <string name="input_trainer_sample_address">Sample Address</string>
+    <string name="input_trainer_sample_phone_number">Sample Number</string>
+    <string name="input_trainer_sample_created_at">Sample Date</string>
+
+
 </resources>

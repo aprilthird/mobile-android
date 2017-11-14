@@ -12,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.adapters.ClientsAdapter;
+import com.teamgym.fitgym.adapters.gymcompany.ClientsAdapter;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 

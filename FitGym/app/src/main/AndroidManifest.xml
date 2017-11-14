@@ -70,6 +70,7 @@
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.gymclient.NavigationClientActivity"
@@ -79,10 +80,12 @@
             android:label="@string/title_activity_navigation_trainer" />
         <activity
             android:name=".activities.gymcompany.NavigationGymCompanyActivity"
+            android:launchMode="singleInstance"
             android:label="@string/title_activity_navigation_gym_company" />
         <activity
-            android:name=".activities.gymclient.AboutClientActivity"
+            android:name=".activities.gymcompany.AboutClientActivity"
             android:label="@string/title_activity_about_client"
+            android:launchMode="singleInstance"
             android:parentActivityName=".activities.gymclient.NavigationClientActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -90,9 +93,10 @@
                 android:value="com.teamgym.fitgym.activities.gymclient.NavigationClientActivity" />
         </activity>
         <activity
-            android:name=".activities.personaltrainer.AboutPersonalTrainerActivity"
+            android:name=".activities.gymcompany.AboutPersonalTrainerActivity"
             android:label="@string/title_activity_about_personal_trainer"
             android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -104,7 +108,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.gymclient.CredentialsActivity" />
         <activity android:name=".activities.gymclient.BodyMeasurementActivity" />
-        <activity android:name=".activities.gymclient.FoodActivity"></activity>
+        <activity android:name=".activities.gymclient.FoodActivity" />
+        <activity
+            android:name=".activities.gymcompany.AddEditPersonalTrainer"
+            android:label="@string/title_activity_add_edit_personal_trainer"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.gymcompany.NavigationGymCompanyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity" />
+        </activity>
     </application>
 
 </manifest>

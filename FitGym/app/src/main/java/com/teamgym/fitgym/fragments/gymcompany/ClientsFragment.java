@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.adapters.ClientsAdapter;
+import com.teamgym.fitgym.adapters.gymcompany.ClientsAdapter;
 import com.teamgym.fitgym.models.Client;
 import com.teamgym.fitgym.models.GymCompany;
 import com.teamgym.fitgym.models.PTrainer;
@@ -56,7 +56,7 @@ public class ClientsFragment extends Fragment {
     }
 
     private void updateClients() {
-        PTrainerApiService.getTrainers(gymCompany.getId(), new IActionPostServiceResult<List<PTrainer>>() {
+        PTrainerApiService.getTrainersByGymId(gymCompany.getId(), new IActionPostServiceResult<List<PTrainer>>() {
             @Override
             public void execute(List<PTrainer> result) {
                 for(final PTrainer pt : result) {

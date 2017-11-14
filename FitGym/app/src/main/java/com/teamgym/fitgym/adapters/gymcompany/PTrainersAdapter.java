@@ -1,5 +1,6 @@
-package com.teamgym.fitgym.adapters;
+package com.teamgym.fitgym.adapters.gymcompany;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +12,10 @@ import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.activities.personaltrainer.AboutPersonalTrainerActivity;
+import com.teamgym.fitgym.activities.gymcompany.AboutPersonalTrainerActivity;
 import com.teamgym.fitgym.models.PTrainer;
-
-import org.w3c.dom.Text;
+import com.teamgym.fitgym.network.IActionPostServiceResult;
+import com.teamgym.fitgym.network.PTrainerApiService;
 
 import java.util.List;
 
@@ -24,6 +25,11 @@ import java.util.List;
 
 public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.ViewHolder> {
     private List<PTrainer> trainers;
+    private Fragment fragment;
+    private PTrainer imageTrainer;
+    private int currentPosition = 0;
+    private int currentId = -1;
+    private static int DETAILS_CODE_RESULT = 1;
 
     public PTrainersAdapter() {
     }
@@ -52,8 +58,8 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
     public void onBindViewHolder(PTrainersAdapter.ViewHolder holder, int position) {
         PTrainer trainer = trainers.get(position);
 
-        holder.photoANImageView.setErrorImageResId(R.mipmap.ic_launcher);
-        holder.photoANImageView.setDefaultImageResId(R.mipmap.ic_launcher);
+        holder.photoANImageView.setErrorImageResId(R.mipmap.ic_ptrainer_icon);
+        holder.photoANImageView.setDefaultImageResId(R.mipmap.ic_ptrainer_icon);
         holder.photoANImageView.setImageUrl(trainer.getPhotoUrl());
         holder.fullNameTextView.setText(trainer.getFullName());
         holder.usernameTextView.setText(trainer.getUsername());
@@ -67,8 +73,10 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AboutPersonalTrainerActivity.class);
                 intent.putExtras(trainer.toBundle());
+                imageTrainer = trainer;
+                currentPosition = position;
+                currentId = trainer.getId();
                 context.startActivity(intent);
-
             }
         });
     }
@@ -76,6 +84,22 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
     @Override
     public int getItemCount() {
         return trainers.size();
+    }
+
+    public PTrainersAdapter verifyIfItemChanged() {
+        if (trainers.isEmpty()) return this;
+        if (currentId == -1 || imageTrainer == null) return this;
+        PTrainerApiService.getTrainer(currentId, new IActionPostServiceResult<PTrainer>() {
+            @Override
+            public void execute(PTrainer trainer) {
+                if (!trainer.equals(imageTrainer)) {
+                    trainer.setGymCompany(imageTrainer.getGymCompany());
+                    trainers.set(currentPosition, trainer);
+                    notifyItemChanged(currentPosition);
+                }
+            }
+        });
+        return this;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -84,7 +84,7 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByTrainerId (int personalTrainerId, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByTrainerId(int personalTrainerId, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
@@ -114,7 +114,7 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByTrainerId (final PTrainer trainer, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByTrainerId(final PTrainer trainer, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
@@ -175,7 +175,7 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByTrainerId (int personalTrainerId, String query, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByTrainerId(int personalTrainerId, String query, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)

@@ -1,4 +1,4 @@
-package com.teamgym.fitgym.adapters;
+package com.teamgym.fitgym.adapters.gymcompany;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.activities.gymclient.AboutClientActivity;
+import com.teamgym.fitgym.activities.gymcompany.AboutClientActivity;
 import com.teamgym.fitgym.models.Client;
 
 import java.util.List;

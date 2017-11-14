@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.teamgym.fitgym.activities.gymclient.BodyMeasurementActivity">
+
+    <TextView
+        android:id="@+id/titlemeasureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/big_margin"
+        android:textSize="@dimen/regular_small_text_size"
+        android:text="Body Measurement"/>
+
+    <TextView
+        android:id="@+id/titlearmsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlemeasureTextView"
+        android:textSize="20dp"
+        android:text="Arms"/>
+
+    <TextView
+        android:id="@+id/armsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toEndOf="@id/titlearmsTextView"
+        app:layout_constraintTop_toBottomOf="@id/titlemeasureTextView"
+        android:textSize="20dp"
+        android:text="Sample Arms"/>
+
+    <TextView
+        android:id="@+id/titlelegsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlearmsTextView"
+        android:textSize="20dp"
+        android:text="Legs"/>
+
+    <TextView
+        android:id="@+id/legsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toEndOf="@id/titlelegsTextView"
+        app:layout_constraintTop_toBottomOf="@id/titlearmsTextView"
+        android:textSize="20dp"
+        android:text="Sample Legs"/>
+
+
+    <TextView
+        android:id="@+id/titleabsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlelegsTextView"
+        android:textSize="20dp"
+        android:text="Abs"/>
+
+    <TextView
+        android:id="@+id/absTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toEndOf="@id/titleabsTextView"
+        app:layout_constraintTop_toBottomOf="@id/titlelegsTextView"
+        android:textSize="20dp"
+        android:text="Sample Legs"/>
+
+    <TextView
+        android:id="@+id/titlechestTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleabsTextView"
+        android:textSize="20dp"
+        android:text="Chest"/>
+
+    <TextView
+        android:id="@+id/chestTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toEndOf="@id/titlechestTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleabsTextView"
+        android:textSize="20dp"
+        android:text="Sample Chest"/>
+
+    <TextView
+        android:id="@+id/titleweightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlechestTextView"
+        android:textSize="20dp"
+        android:text="Weight"/>
+
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toEndOf="@id/titleweightTextView"
+        app:layout_constraintTop_toBottomOf="@id/titlechestTextView"
+        android:textSize="20dp"
+        android:text="Sample Weight"/>
+
+    <TextView
+        android:id="@+id/titleheightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleweightTextView"
+        android:textSize="20dp"
+        android:text="Height"/>
+
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/double_big_margin"
+        app:layout_constraintStart_toEndOf="@id/titleheightTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleweightTextView"
+        android:textSize="20dp"
+        android:text="Sample Height"/>
+</android.support.constraint.ConstraintLayout>
