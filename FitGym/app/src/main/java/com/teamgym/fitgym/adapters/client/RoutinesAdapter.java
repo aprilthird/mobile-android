@@ -63,7 +63,7 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
         holder.exerciseTextView.setText(activityType.getDescription());
         holder.starttimeTextView.setText(activity.getStartTimeAsString());
         holder.endtimeTextView.setText(activity.getEndTimeAsString());
-        holder.locationTextView.setText(establishment.getEstablishmentName());
+        holder.locationTextView.setText(establishment.getName());
 
 
     }

@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.activities.gymcompany.AddEditPersonalTrainer;
+import com.teamgym.fitgym.activities.gymcompany.AddEditPersonalTrainerActivity;
 import com.teamgym.fitgym.adapters.gymcompany.PTrainersAdapter;
 import com.teamgym.fitgym.models.GymCompany;
 import com.teamgym.fitgym.models.PTrainer;
@@ -34,11 +34,6 @@ public class TrainersFragment extends Fragment {
     int trainersOldSize = 0;
     GymCompany gymCompany;
 
-    static int REQUEST_CODE_ADD = 2;
-    static int REQUEST_CODE_DETAILS = 1;
-    static int RESULT_CODE_OK = 200;
-    static int RESULT_CODE_NOT_OK = 300;
-
     public TrainersFragment() {
         // Required empty public constructor
     }
@@ -55,11 +50,10 @@ public class TrainersFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, AddEditPersonalTrainer.class);
+                Intent intent = new Intent(context, AddEditPersonalTrainerActivity.class);
                 intent.putExtras(gymCompany.toBundle());
                 trainersOldSize = trainers.size();
                 context.startActivity(intent);
-                //startActivityForResult(intent, 2);
             }
         });
 

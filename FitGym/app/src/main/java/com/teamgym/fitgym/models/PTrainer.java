@@ -17,19 +17,19 @@ import java.util.List;
  */
 
 public class PTrainer {
-    int id;
-    String firstName;
-    String lastName;
-    String username;
-    String address;
-    String phoneNumber;
-    String gender;
-    String photoUrl;
-    Date createdAt;
-    String updatedAt;
-    String password;
-    Date birthDate;
-    GymCompany gymCompany;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String address;
+    private String phoneNumber;
+    private String gender;
+    private String photoUrl;
+    private Date createdAt;
+    private String updatedAt;
+    private String password;
+    private Date birthDate;
+    private GymCompany gymCompany;
 
     public  PTrainer(){
     }

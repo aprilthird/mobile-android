@@ -104,6 +104,17 @@
     <string name="input_trainer_sample_address">Sample Address</string>
     <string name="input_trainer_sample_phone_number">Sample Number</string>
     <string name="input_trainer_sample_created_at">Sample Date</string>
-
-
+    <string name="title_activity_add_edit_establishment">AddEditEstablishment</string>
+    <string name="title_activity_add_edit_type">AddEditActivityTypeActivity</string>
+    <string name="input_activity_type_description">Description</string>
+    <string name="input_activity_type_description_sample">Sample Description</string>
+    <string name="input_establishment_name">Name</string>
+    <string name="input_establishment_latitude">Latitude</string>
+    <string name="input_establishment_longitude">Longitude</string>
+    <string name="input_establishment_created_at">Register Creation</string>
+    <string name="input_establishment_name_sample">Sample Name</string>
+    <string name="input_establishment_latitude_sample">Latitude Position</string>
+    <string name="input_establishment_longitude_sample">Longitude Position</string>
+    <string name="input_establishment_created_at_sample">Sample Date</string>
+    <string name="title_activity_about_establishment">About Establishment</string>
 </resources>

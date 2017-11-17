@@ -25,11 +25,9 @@ import java.util.List;
 
 public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.ViewHolder> {
     private List<PTrainer> trainers;
-    private Fragment fragment;
     private PTrainer imageTrainer;
     private int currentPosition = 0;
     private int currentId = -1;
-    private static int DETAILS_CODE_RESULT = 1;
 
     public PTrainersAdapter() {
     }

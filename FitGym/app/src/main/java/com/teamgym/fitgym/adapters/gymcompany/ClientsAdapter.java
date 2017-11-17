@@ -42,8 +42,8 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHold
     @Override
     public void onBindViewHolder(ClientsAdapter.ViewHolder holder, int position) {
         final Client client =  clients.get(position);
-        holder.photoANImageView.setErrorImageResId(R.mipmap.ic_launcher);
-        holder.photoANImageView.setDefaultImageResId(R.mipmap.ic_launcher);
+        holder.photoANImageView.setErrorImageResId(R.drawable.client);
+        holder.photoANImageView.setDefaultImageResId(R.drawable.client);
         holder.photoANImageView.setImageUrl(client.getPhotoUrl());
         holder.fullNameTextView.setText(client.getFullName());
         holder.usernameTextView.setText(client.getUsername());

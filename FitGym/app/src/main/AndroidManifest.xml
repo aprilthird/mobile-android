@@ -8,6 +8,13 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
@@ -80,8 +87,8 @@
             android:label="@string/title_activity_navigation_trainer" />
         <activity
             android:name=".activities.gymcompany.NavigationGymCompanyActivity"
-            android:launchMode="singleInstance"
-            android:label="@string/title_activity_navigation_gym_company" />
+            android:label="@string/title_activity_navigation_gym_company"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activities.gymcompany.AboutClientActivity"
             android:label="@string/title_activity_about_client"
@@ -95,8 +102,8 @@
         <activity
             android:name=".activities.gymcompany.AboutPersonalTrainerActivity"
             android:label="@string/title_activity_about_personal_trainer"
-            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
             android:launchMode="singleInstance"
+            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -110,11 +117,43 @@
         <activity android:name=".activities.gymclient.BodyMeasurementActivity" />
         <activity android:name=".activities.gymclient.FoodActivity" />
         <activity
-            android:name=".activities.gymcompany.AddEditPersonalTrainer"
+            android:name=".activities.gymcompany.AddEditPersonalTrainerActivity"
             android:label="@string/title_activity_add_edit_personal_trainer"
             android:launchMode="singleInstance"
             android:parentActivityName=".activities.gymcompany.NavigationGymCompanyActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity" />
+        </activity>
+        <activity
+            android:name=".activities.gymcompany.AddEditEstablishmentActivity"
+            android:label="@string/title_activity_add_edit_establishment"
+            android:parentActivityName=".activities.gymcompany.NavigationGymCompanyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity" />
+        </activity>
+        <activity
+            android:name=".activities.gymcompany.AddEditActivityTypeActivity"
+            android:label="@string/title_activity_add_edit_type"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".activities.gymcompany.AboutEstablishmentActivity"
+            android:label="@string/title_activity_about_establishment">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity" />

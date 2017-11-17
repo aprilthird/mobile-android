@@ -2,23 +2,16 @@ package com.teamgym.fitgym.fragments.gymcompany;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TabHost;
 
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +20,6 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PersonalFragment extends Fragment {
-    //FragmentTabHost personalTabHost;
     ViewPager viewPager;
     TabLayout tabLayout;
 

@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-public class AddEditPersonalTrainer extends AppCompatActivity {
+public class AddEditPersonalTrainerActivity extends AppCompatActivity {
     static final String[] FULL_GENDERS = new String[] { "Female", "Male" };
     static final String[] ABV_GENDERS = new String[] { "F", "M" };
 
@@ -101,7 +101,7 @@ public class AddEditPersonalTrainer extends AppCompatActivity {
             usernameEditText.setText(trainer.getUsername());
             phoneNumberEditText.setText(trainer.getPhoneNumber());
             addressEditText.setText(trainer.getAddress());
-            Calendar birthDate = Calendar.getInstance();
+            Calendar    birthDate = Calendar.getInstance();
             birthDate.setTime(trainer.getBirthDate());
             mYear = birthDate.get(Calendar.YEAR);
             mMonth = birthDate.get(Calendar.MONTH);
@@ -222,7 +222,7 @@ public class AddEditPersonalTrainer extends AppCompatActivity {
                     pTrainer.setPhotoUrl("no-photo");
                     PTrainerApiService.createTrainer(pTrainer, new IActionPostServiceResult() {
                         @Override
-                        public void execute(Object result) {
+                            public void execute(Object result) {
                             Snackbar.make(view, getString(R.string.alert_create_success), Snackbar.LENGTH_LONG * 2)
                                     .setAction(getString(R.string.message_button_ok), new View.OnClickListener() {
                                         @Override
