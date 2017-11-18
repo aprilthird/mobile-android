@@ -22,7 +22,7 @@ public class GymCompanyApiService {
     public static GymCompany gymCompany = new GymCompany();
 
     public static GymCompany getGymCompany (int gymCompanyId, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.GYM_COMPANIES)
+        AndroidNetworking.get(FitGymApiService.GYM_COMPANIES + "/{id}")
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addPathParameter("id", String.valueOf(gymCompanyId))

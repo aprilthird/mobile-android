@@ -1,6 +1,8 @@
 package com.teamgym.fitgym.fragments.gymcompany;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.activities.gymcompany.AddEditActivityTypeActivity;
 import com.teamgym.fitgym.adapters.gymcompany.ActivityTypesAdapter;
 import com.teamgym.fitgym.models.ActivityType;
 import com.teamgym.fitgym.models.GymCompany;
@@ -48,7 +51,11 @@ public class ActivityTypesFragment extends Fragment {
         fabAddActivityType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                Context context = view.getContext();
+                Intent intent = new Intent(context, AddEditActivityTypeActivity.class);
+                intent.putExtras(gymCompany.toBundle());
+                activityTypesOldSize = activityTypes.size();
+                context.startActivity(intent);
             }
         });
 

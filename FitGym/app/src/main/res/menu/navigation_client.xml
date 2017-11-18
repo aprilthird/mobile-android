@@ -2,24 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_food_diet"
-        android:icon="@drawable/ic_restaurant_black_24dp"
-        android:title="@string/title_client_diet" />
-..
-    <item
         android:id="@+id/navigation_routines"
         android:icon="@drawable/ic_fitness_center_black_24dp"
-        android:title="@string/title_client_routine" />
+        android:title="@string/title_client_routines" />
+
+    <item
+        android:id="@+id/navigation_food_diet"
+        android:icon="@drawable/ic_restaurant_black_24dp"
+        android:title="@string/title_client_food_diet" />
 
     <item
         android:id="@+id/navigation_evaluation"
         android:icon="@drawable/ic_assessment_black_24dp"
-        android:title="@string/title_client_eva" />
+        android:title="@string/title_client_progress" />
 
     <item
-        android:id="@+id/navigation_account"
-        android:icon="@drawable/ic_account_box_black_24dp"
-        android:title="@string/title_client_account" />
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/title_client_settings" />
 
 
 </menu>

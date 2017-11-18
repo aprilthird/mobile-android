@@ -207,6 +207,7 @@ public class PTrainer {
     }
 
     public static PTrainer from(Bundle bundle) {
+        if (bundle == null) return null;
         PTrainer pTrainer = new PTrainer();
         try {
             pTrainer.setId(bundle.getInt("id"))

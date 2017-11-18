@@ -12,10 +12,6 @@ import com.teamgym.fitgym.fragments.client.AccountClientFragment;
 import com.teamgym.fitgym.fragments.client.EvaluationsClientFragment;
 import com.teamgym.fitgym.fragments.client.FoodDietClientFragment;
 import com.teamgym.fitgym.fragments.client.RoutinesClientFragment;
-import com.teamgym.fitgym.fragments.personaltrainer.AccountTrainerFragment;
-import com.teamgym.fitgym.fragments.personaltrainer.EvaluationsFragment;
-import com.teamgym.fitgym.fragments.personaltrainer.FoodDietFragment;
-import com.teamgym.fitgym.fragments.personaltrainer.RoutinesFragment;
 
 public class NavigationClientActivity extends AppCompatActivity {
 

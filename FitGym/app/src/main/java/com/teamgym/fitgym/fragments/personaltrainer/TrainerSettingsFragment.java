@@ -12,10 +12,10 @@ import com.teamgym.fitgym.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccountTrainerFragment extends Fragment {
+public class TrainerSettingsFragment extends Fragment {
 
 
-    public AccountTrainerFragment() {
+    public TrainerSettingsFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class AccountTrainerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account_trainer, container, false);
+        return inflater.inflate(R.layout.fragment_trainer_settings, container, false);
     }
 
 }

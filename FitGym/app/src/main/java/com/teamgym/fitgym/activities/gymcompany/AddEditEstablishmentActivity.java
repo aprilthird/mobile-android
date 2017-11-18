@@ -25,6 +25,7 @@ public class AddEditEstablishmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_establishment);
 
         Establishment establishment = Establishment.from(getIntent().getExtras());
+
         nameTextInputEditText = (TextInputEditText) findViewById(R.id.nameTextInputEditText);
         locationXTextInputEditText = (TextInputEditText) findViewById(R.id.locationXTextInputEditText);
         locationYTextInputEditText = (TextInputEditText) findViewById(R.id.locationYTextInputEditText);
@@ -122,7 +123,7 @@ public class AddEditEstablishmentActivity extends AppCompatActivity {
         });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(establishment != null ? "Edit Trainer" : "Add Trainer");
+        toolbar.setTitle(establishment != null ? "Edit Establishment" : "Add Establishment");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

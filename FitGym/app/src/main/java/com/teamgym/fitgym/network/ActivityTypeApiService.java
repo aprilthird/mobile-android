@@ -96,7 +96,7 @@ public class ActivityTypeApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            activityTypes = ActivityType.from(response.getJSONArray("activityTypes"));
+                            activityTypes = ActivityType.from(response.getJSONArray("activityTypes"), gymCompany);
                             action.execute(activityTypes);
                         }
                         catch (JSONException e) {

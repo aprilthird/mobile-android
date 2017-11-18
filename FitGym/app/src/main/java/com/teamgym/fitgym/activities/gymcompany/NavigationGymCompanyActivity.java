@@ -11,6 +11,7 @@ import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.fragments.gymcompany.AccountFragment;
 import com.teamgym.fitgym.fragments.gymcompany.CompanyFragment;
 import com.teamgym.fitgym.fragments.gymcompany.PersonalFragment;
+import com.teamgym.fitgym.fragments.gymcompany.SettingsFragment;
 
 public class NavigationGymCompanyActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -46,8 +47,8 @@ public class NavigationGymCompanyActivity extends AppCompatActivity {
                 getSupportActionBar().setSubtitle(R.string.title_gym_company_company);
                 return new CompanyFragment();
             case R.id.navigation_account:
-                getSupportActionBar().setSubtitle(R.string.title_gym_company_account);
-                return new AccountFragment();
+                getSupportActionBar().setSubtitle(R.string.title_gym_company_settings);
+                return new SettingsFragment();
         }
         return null;
     }

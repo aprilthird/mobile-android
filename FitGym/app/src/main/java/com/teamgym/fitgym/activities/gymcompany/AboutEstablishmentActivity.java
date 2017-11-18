@@ -41,14 +41,15 @@ public class AboutEstablishmentActivity extends FragmentActivity implements OnMa
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        /*
         Establishment establishment = Establishment.from(getIntent().getExtras());
         LatLng position = new LatLng(establishment.getLocationY(), establishment.getLocationX());
-        mMap.addMarker(new MarketOptions().position(establishment).title("Establishment"));
+        mMap.addMarker(new MarkerOptions().position(position).title("Establishment"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
-        */
+
+        /*
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        */
     }
 }

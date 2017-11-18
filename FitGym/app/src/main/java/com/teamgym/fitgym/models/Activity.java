@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by GNO on 26/09/2017.
  */
 
-public class Activity extends SugarRecord {
+public class Activity {
     Client client;
     Date startTime, endTime;
     Establishment establishment;
@@ -61,4 +61,6 @@ public class Activity extends SugarRecord {
 
         return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")).format(endTime);
     }
+
+
 }

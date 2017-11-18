@@ -100,9 +100,11 @@ public class Establishment {
     }
 
     public static Establishment from(Bundle bundle) {
+        if (bundle == null) return null;
         Establishment establishment = new Establishment();
         try {
-            establishment.setName(bundle.getString("name"))
+            establishment.setId(bundle.getInt("id"))
+                    .setName(bundle.getString("name"))
                     .setLocationX(bundle.getDouble("locationX"))
                     .setLocationY(bundle.getDouble("locationY"))
                     .setCreatedAt((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(bundle.getString("createdAt"))))

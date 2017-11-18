@@ -1,13 +1,213 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.teamgym.fitgym.fragments.gymcompany.SettingsFragment">
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity"
+    tools:showIn="@layout/fragment_settings">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <com.androidnetworking.widget.ANImageView
+                android:id="@+id/gymLogoANIImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/gymLogoANIImageView"
+                android:layout_toRightOf="@id/gymLogoANIImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/input_settings_gym_account"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameTextView"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/gymLogoANIImageView"
+                android:layout_toRightOf="@id/gymLogoANIImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@string/input_settings_gym_account_description"/>
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/subscriptionImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                app:srcCompat="@drawable/ic_birthdate"/>
+            <TextView
+                android:id="@+id/subscriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/subscriptionImageView"
+                android:layout_toRightOf="@id/subscriptionImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/input_settings_gym_subscriptions"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/subscriptionTextView"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/subscriptionImageView"
+                android:layout_toRightOf="@id/subscriptionImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@string/input_settings_gym_susbscriptions_description"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/shareImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                app:srcCompat="@drawable/ic_gender_symbols"/>
+            <TextView
+                android:id="@+id/shareTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/shareImageView"
+                android:layout_toRightOf="@id/shareImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/input_settings_gym_share"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shareTextView"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/shareImageView"
+                android:layout_toRightOf="@id/shareImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@string/input_settings_gym_share_description"/>
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/helpImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                app:srcCompat="@drawable/ic_phone_black_24dp"/>
+            <TextView
+                android:id="@+id/helpTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/helpImageView"
+                android:layout_toRightOf="@id/helpImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/input_settings_gym_help"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/helpTextView"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/helpImageView"
+                android:layout_toRightOf="@id/helpImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@string/input_settings_gym_help_description"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/versionImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                app:srcCompat="@drawable/ic_location_on_black_24dp"/>
+            <TextView
+                android:id="@+id/versionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/versionImageView"
+                android:layout_toRightOf="@id/versionImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/input_settings_gym_sample_version"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/versionTextView"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/versionImageView"
+                android:layout_toRightOf="@id/versionImageView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="@string/input_settings_gym_version"/>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

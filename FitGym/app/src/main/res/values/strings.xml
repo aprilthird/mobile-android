@@ -44,17 +44,14 @@
     <string name="title_gym_company_personal">My Personal</string>
     <string name="title_gym_company_company">My Company</string>
     <string name="title_gym_company_account">My Account</string>
-    <string name="title_gym_company_settings">Settings</string>
-    <string name="title_trainer_food_diet">Food Diet</string>
-    <string name="title_trainer_routines">Routines</string>
-    <string name="title_trainer_evaluation">Evaluation</string>
-    <string name="title_trainer_account">My Account</string>
+    <string name="title_gym_company_settings">My Settings</string>
     <string name="title_trainer_clients">My Clients</string>
-    <string name="title_trainer_activity">My Activity</string>
-    <string name="title_client_diet">Food Diet</string>
-    <string name="title_client_routine">Routines</string>
-    <string name="title_client_account">Account</string>
-    <string name="title_client_eva">Evaluation</string>
+    <string name="title_trainer_activities">My Activities</string>
+    <string name="title_trainer_settings">My Settings</string>
+    <string name="title_client_routines">My Routines</string>
+    <string name="title_client_food_diet">My Diet</string>
+    <string name="title_client_progress">My Progress</string>
+    <string name="title_client_settings">My Settings</string>
 
     <!-- Forms String Messages -->
     <string name="form_field_required">This field is required</string>
@@ -107,14 +104,24 @@
     <string name="title_activity_add_edit_establishment">AddEditEstablishment</string>
     <string name="title_activity_add_edit_type">AddEditActivityTypeActivity</string>
     <string name="input_activity_type_description">Description</string>
-    <string name="input_activity_type_description_sample">Sample Description</string>
+    <string name="input_activity_type_sample_description">Sample Description</string>
     <string name="input_establishment_name">Name</string>
     <string name="input_establishment_latitude">Latitude</string>
     <string name="input_establishment_longitude">Longitude</string>
     <string name="input_establishment_created_at">Register Creation</string>
-    <string name="input_establishment_name_sample">Sample Name</string>
-    <string name="input_establishment_latitude_sample">Latitude Position</string>
-    <string name="input_establishment_longitude_sample">Longitude Position</string>
-    <string name="input_establishment_created_at_sample">Sample Date</string>
+    <string name="input_establishment_sample_name">Sample Name</string>
+    <string name="input_establishment_sample_latitude">Latitude Position</string>
+    <string name="input_establishment_sample_longitude">Longitude Position</string>
+    <string name="input_establishment_sample_created_at">Sample Date</string>
     <string name="title_activity_about_establishment">About Establishment</string>
+    <string name="input_settings_gym_account">Sample Gym</string>
+    <string name="input_settings_gym_account_description">Account Information</string>
+    <string name="input_settings_gym_help">Help</string>
+    <string name="input_settings_gym_help_description">Help</string>
+    <string name="input_settings_gym_share">Share</string>
+    <string name="input_settings_gym_share_description">Share</string>
+    <string name="input_settings_gym_subscriptions">Subscriptions</string>
+    <string name="input_settings_gym_susbscriptions_description">Check your payment information</string>
+    <string name="input_settings_gym_version">Version</string>
+    <string name="input_settings_gym_sample_version">1.1</string>
 </resources>

@@ -24,6 +24,8 @@ import com.teamgym.fitgym.models.GymCompany;
 import com.teamgym.fitgym.models.PTrainer;
 import com.teamgym.fitgym.models.SuscriptionType;
 import com.teamgym.fitgym.network.FitGymApiService;
+import com.teamgym.fitgym.network.GymCompanyApiService;
+import com.teamgym.fitgym.network.IActionPostServiceResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,11 +96,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if ("error".equalsIgnoreCase(response.getString("status")))
+                            if ("error".equalsIgnoreCase(response.getString("status"))) {
                                 Log.d(getString(R.string.app_name), response.getString("message"));
-                            receivedToken = response.getString("token");
-                            GymCompany gymCompany = GymCompany.from(response.getJSONObject("gymCompany"));
-                            startActivity((new Intent(view.getContext(), NavigationGymCompanyActivity.class)).putExtras(gymCompany.toBundle()));
+                            }
+                            else {
+                                receivedToken = response.getString("token");
+                                GymCompany gymCompany = GymCompany.from(response.getJSONObject("gymCompany"));
+                                startActivity((new Intent(view.getContext(), NavigationGymCompanyActivity.class)).putExtras(gymCompany.toBundle()));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -121,11 +126,21 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if("error".equalsIgnoreCase(response.getString("status")))
+                            if("error".equalsIgnoreCase(response.getString("status"))) {
                                 Log.d(getString(R.string.app_name), response.getString("message"));
-                            receivedToken = response.getString("token");
-                            PTrainer pTrainer = PTrainer.from(response.getJSONObject("personalTrainer"));
-                            startActivity(new Intent(view.getContext(), NavigationTrainerActivity.class).putExtras(pTrainer.toBundle()));
+                            }
+                            else {
+                                receivedToken = response.getString("token");
+                                PTrainer pTrainer = PTrainer.from(response.getJSONObject("personalTrainer"));
+                                int gymCompanyId = response.getJSONObject("personalTrainer").getInt("gymCompanyId");
+                                GymCompanyApiService.getGymCompany(gymCompanyId, new IActionPostServiceResult<GymCompany>() {
+                                    @Override
+                                    public void execute(GymCompany gymCompany) {
+                                        pTrainer.setGymCompany(gymCompany);
+                                        startActivity((new Intent(view.getContext(), NavigationTrainerActivity.class)).putExtras(pTrainer.toBundle()));
+                                    }
+                                });
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -148,11 +163,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if("error".equalsIgnoreCase(response.getString("status")))
+                            if("error".equalsIgnoreCase(response.getString("status"))) {
                                 Log.d(getString(R.string.app_name), response.getString("message"));
-                            receivedToken = response.getString("token");
-                            Client client = Client.from(response.getJSONObject("client"));
-                            startActivity(new Intent(view.getContext(), NavigationClientActivity.class).putExtras(client.toBundle()));
+                            }
+                            else {
+                                receivedToken = response.getString("token");
+                                Client client = Client.from(response.getJSONObject("client"));
+                                startActivity((new Intent(view.getContext(), NavigationClientActivity.class)).putExtras(client.toBundle()));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

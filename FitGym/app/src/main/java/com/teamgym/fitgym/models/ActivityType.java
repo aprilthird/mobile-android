@@ -61,6 +61,7 @@ public class ActivityType {
     }
 
     public static ActivityType from(Bundle bundle) {
+        if (bundle == null) return null;
         ActivityType activityType = new ActivityType();
         activityType.setId(bundle.getInt("id"))
                 .setDescription(bundle.getString("description"))
