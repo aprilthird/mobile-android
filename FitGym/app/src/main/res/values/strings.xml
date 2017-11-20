@@ -124,4 +124,7 @@
     <string name="input_settings_gym_susbscriptions_description">Check your payment information</string>
     <string name="input_settings_gym_version">Version</string>
     <string name="input_settings_gym_sample_version">1.1</string>
+    <string name="title_activity_about_client_trainer">AboutClientTrainerActivity</string>
+    <string name="title_activity_schedule_trainer">ScheduleTrainerActivity</string>
+    <string name="title_activity_add_edit_client">AddEditClientActivity</string>
 </resources>

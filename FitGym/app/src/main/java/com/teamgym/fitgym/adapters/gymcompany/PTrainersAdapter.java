@@ -70,7 +70,7 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AboutPersonalTrainerActivity.class);
-                intent.putExtras(trainer.toBundle());
+                intent.putExtra("trainerForDetail", trainer.toBundle());
                 imageTrainer = trainer;
                 currentPosition = position;
                 currentId = trainer.getId();

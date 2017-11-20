@@ -8,7 +8,7 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.3"
     defaultConfig {
         applicationId "com.teamgym.fitgym"
         minSdkVersion 19
@@ -52,5 +52,6 @@ dependencies {
     compile 'com.amitshekhar.android:android-networking:1.0.0'
     compile 'com.android.support:recyclerview-v7:26.+'
     compile 'com.weiwangcn.betterspinner:library:1.1.0'
+    compile 'com.github.alamkanak:android-week-view:1.2.6'
     testCompile 'junit:junit:4.12'
 }

@@ -39,6 +39,11 @@ public class AboutPersonalTrainerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_personal_trainer);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        if (getIntent().getBundleExtra("trainerForDetail") == null) {
+            
+        }
+
         trainer = PTrainer.from(getIntent().getExtras());
 
         FloatingActionButton fabEditTrainer = (FloatingActionButton) findViewById(R.id.editTrainerButton);
@@ -60,7 +65,6 @@ public class AboutPersonalTrainerActivity extends AppCompatActivity {
         genderTextView = (TextView) findViewById(R.id.genderTextView);
         phoneNumberTextView = (TextView) findViewById(R.id.phoneNumberTextView);
         createdAtTextView = (TextView) findViewById(R.id.createdAtTextView);
-        toolbar.setTitle(trainer.getShortFullName());
         setSupportActionBar(toolbar);
         toolbar.setTitle(trainer.getShortFullName());
         toolbar.setSubtitle("Personal Trainer");

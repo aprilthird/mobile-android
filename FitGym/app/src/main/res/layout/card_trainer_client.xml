@@ -34,32 +34,62 @@
             android:id="@+id/usernameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameTextView"
+            app:layout_constraintTop_toBottomOf="@id/fullNameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="@dimen/default_margin"
+            android:paddingTop="@dimen/default_margin"
             android:text="Username"
             android:textAlignment="center" />
         <ImageView
             android:id="@+id/genderImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@id/usernameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="@dimen/default_margin"
             android:src="@mipmap/ic_launcher" />
+        <!--
         <TextView
-            android:id="@+id/moreTextView"
+            android:id="@+id/foodTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/trainerNameTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="@dimen/default_margin"
-            android:text="More"
+            android:text="Food"
             android:textColor="@color/colorAccent"
             android:textAllCaps="true"/>
+        <TextView
+            android:id="@+id/routinesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/foodTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/default_margin"
+            android:text="Routines"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"/>
+            -->
+        <ImageView
+            android:id="@+id/routinesImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@id/genderImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_access_time_black_24dp"/>
+        <ImageView
+            android:id="@+id/foodImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@id/genderImageView"
+            app:layout_constraintEnd_toStartOf="@id/routinesImageView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_kitchen_black_24px" />
         <TextView
             android:id="@+id/aboutTextView"
             android:layout_width="wrap_content"

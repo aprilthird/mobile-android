@@ -1,30 +1,93 @@
 package com.teamgym.fitgym.fragments.personaltrainer;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alamkanak.weekview.WeekView;
 import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.adapters.gymcompany.ClientsAdapter;
+import com.teamgym.fitgym.adapters.personaltrainer.ClientsPTrainerAdapter;
+import com.teamgym.fitgym.models.Client;
+import com.teamgym.fitgym.models.PTrainer;
+import com.teamgym.fitgym.network.ClientApiService;
+import com.teamgym.fitgym.network.IActionPostServiceResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ClientsTrainerFragment extends Fragment {
-
+    RecyclerView clientsRecyclerView;
+    ClientsPTrainerAdapter clientsAdapter;
+    RecyclerView.LayoutManager clientsLayoutManager;
+    List<Client> clients;
+    int clientsOldSize = 0;
+    PTrainer pTrainer;
 
     public ClientsTrainerFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clients_trainer, container, false);
+        View view = inflater.inflate(R.layout.fragment_clients_trainer, container, false);
+
+        pTrainer = PTrainer.from(getActivity().getIntent().getExtras());
+
+        FloatingActionButton fabAddClient = (FloatingActionButton) view.findViewById(R.id.addClientButton);
+        fabAddClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        clientsRecyclerView = (RecyclerView) view.findViewById(R.id.clientsTrainerRecyclerView);
+        clients = new ArrayList<>();
+        clientsAdapter = new ClientsPTrainerAdapter(clients);
+        clientsLayoutManager = new GridLayoutManager(view.getContext(), 2);
+        clientsRecyclerView.setLayoutManager(clientsLayoutManager);
+        clientsRecyclerView.setAdapter(clientsAdapter);
+        updateClients();
+        return view;
     }
 
+    private void updateClients() {
+        ClientApiService.getClientsByTrainerId(pTrainer, new IActionPostServiceResult<List<Client>>() {
+            @Override
+            public void execute(List<Client> result) {
+                clients = result;
+                clientsAdapter.setClients(clients);
+                clientsAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        clientsAdapter.verifyIfItemChanged();
+        if (clientsOldSize == 0) return;
+        ClientApiService.getClientsByTrainerId(pTrainer, new IActionPostServiceResult<List<Client>>() {
+            @Override
+            public void execute(List<Client> result) {
+                if (clientsOldSize != result.size()) {
+                    clientsAdapter.setClients(result);
+                    clientsAdapter.notifyItemInserted(clients.size() - 1);
+                }
+            }
+        });
+    }
 }

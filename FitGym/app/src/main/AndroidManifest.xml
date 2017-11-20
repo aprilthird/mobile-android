@@ -158,6 +158,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity" />
         </activity>
+        <activity
+            android:name=".activities.personaltrainer.AboutClientTrainerActivity"
+            android:label="@string/title_activity_about_client_trainer"
+            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.AddEditClientActivity"
+            android:label="@string/title_activity_add_edit_client"
+            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity" />
+        </activity>
     </application>
 
 </manifest>

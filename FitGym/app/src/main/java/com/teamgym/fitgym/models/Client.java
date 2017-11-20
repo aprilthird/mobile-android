@@ -23,7 +23,8 @@ public class Client {
     Date birthDate;
     BigDecimal height;
     PTrainer pTrainer;
-    String createdAt, updatedAt;
+    String updatedAt;
+    Date createdAt;
 
     public Client(){}
 
@@ -134,11 +135,11 @@ public class Client {
         return this;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public Client setCreatedAt(String createdAt) {
+    public Client setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -170,6 +171,39 @@ public class Client {
         return this;
     }
 
+    public String getShortFullName() {
+        return (getFullName().length() > 16) ? getFullName().substring(0, 14).concat("...") : getFullName();
+    }
+
+    public String getGenderAsFullyString() {
+        return (gender.equals("M") ? "Male" : "Female");
+    }
+
+    public String getBirthDateAsString() {
+        return (new SimpleDateFormat("EEE MMM dd, yyyy")).format(birthDate);
+    }
+
+    public String getCreatedAtAsString() {
+        return (new SimpleDateFormat("EEE MMM dd, yyyy")).format(createdAt);
+    }
+
+    public String getBirthDateAsJSONDate() {
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(birthDate);
+    }
+
+
+    public boolean equals (Client client) {
+        if (client == null) return false;
+        return firstName.equals(client.firstName)
+                && lastName.equals(client.lastName)
+                && username.equals(client.username)
+                && birthDate.equals(client.birthDate)
+                && gender.equals(client.gender)
+                && address.equals(client.getAddress())
+                && height.equals(client.getHeight())
+                && email.equals(client.getEmail());
+    }
+
     public Bundle toBundle() {
         Bundle bundle = new Bundle();
         bundle.putInt("id", id);
@@ -182,13 +216,14 @@ public class Client {
         bundle.putString("gender", gender);
         bundle.putString("photoUrl", photoUrl);
         bundle.putString("height", height.toString());
-        bundle.putString("createdAt", createdAt);
+        bundle.putString("createdAt", createdAt.toString());
         bundle.putString("updatedAt", updatedAt);
         bundle.putBundle("trainer", pTrainer.toBundle());
         return bundle;
     }
 
     public static Client from(Bundle bundle) {
+        if (bundle == null) return null;
         Client client = new Client();
         try {
             client.setId(bundle.getInt("id"))
@@ -200,7 +235,9 @@ public class Client {
                     .setAddress(bundle.getString("address"))
                     .setPhotoUrl(bundle.getString("photoUrl"))
                     .setHeight(new BigDecimal(bundle.getString("height")))
-                    .setBirthDate(((new SimpleDateFormat("yyyy-MM-dd")).parse(bundle.getString("birthDate"))))
+                    .setBirthDate(((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")).parse(bundle.getString("birthDate"))))
+                    .setUpdatedAt(bundle.getString("updatedAt"))
+                    .setCreatedAt(((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")).parse(bundle.getString("createdAt"))))
                     .setpTrainer(PTrainer.from(bundle.getBundle("trainer")));
             return client;
         }
@@ -222,9 +259,10 @@ public class Client {
                     .setGender(jsonClient.getString("gender"))
                     .setPhotoUrl(jsonClient.getString("photoUrl"))
                     .setHeight(BigDecimal.valueOf(jsonClient.getDouble("height")))
-                    .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonClient.getString("birthDate"))))
+                    .setBirthDate(((new SimpleDateFormat("yyyy-MM-dd")).parse(jsonClient.getString("birthDate"))))
+                    .setUpdatedAt(jsonClient.getString("updatedAt"))
+                    .setCreatedAt(((new SimpleDateFormat("yyyy-MM-dd")).parse(jsonClient.getString("createdAt"))))
                     .setpTrainer(trainer);
-            // TODO probar esto
             return client;
         }
         catch (JSONException | ParseException e) {
@@ -244,14 +282,34 @@ public class Client {
                     .setAddress(jsonClient.getString("address"))
                     .setGender(jsonClient.getString("gender"))
                     .setPhotoUrl(jsonClient.getString("photoUrl"))
-                    .setCreatedAt(jsonClient.getString("createdAt"))
+                    .setCreatedAt(((new SimpleDateFormat("yyyy-MM-dd")).parse(jsonClient.getString("createdAt"))))
                     .setUpdatedAt(jsonClient.getString("updatedAt"))
                     .setHeight(BigDecimal.valueOf(jsonClient.getDouble("height")))
-                    .setBirthDate((new SimpleDateFormat("yyyy-MM-dd").parse(jsonClient.getString("birthDate"))));
-            // TODO probar esto
+                    .setBirthDate(((new SimpleDateFormat("yyyy-MM-dd")).parse(jsonClient.getString("birthDate"))));
             return client;
         }
         catch (JSONException | ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public JSONObject toJSONObject() {
+        JSONObject jsonClient = new JSONObject();
+        try {
+            jsonClient.put("firstName", firstName)
+                    .put("lastName", lastName)
+                    .put("username", username)
+                    .put("password", password)
+                    .put("email", email)
+                    .put("address", address)
+                    .put("personalTrainerId", pTrainer.getId())
+                    .put("birthDate", getBirthDateAsJSONDate())
+                    .put("gender", gender)
+                    .put("photoUrl", photoUrl);
+            return jsonClient;
+        }
+        catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
