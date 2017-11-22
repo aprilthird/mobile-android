@@ -25,10 +25,11 @@ public class ActivityTypeApiService {
     public static List<ActivityType> activityTypes = new ArrayList<>();
     public static ActivityType activityType = new ActivityType();
 
-    public static void getActivityTypes(IActionPostServiceResult action) {
+    public static void getActivityTypes(String tkn, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ACTIVITY_TYPES)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -53,11 +54,12 @@ public class ActivityTypeApiService {
                 });
     }
 
-    public static void getActivityTypesByGymId(int gymCompanyId, IActionPostServiceResult action) {
+    public static void getActivityTypesByGymId(String tkn, int gymCompanyId, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ACTIVITY_TYPES)
                 .addQueryParameter("gymCompanyId", String.valueOf(gymCompanyId))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -82,11 +84,12 @@ public class ActivityTypeApiService {
                 });
     }
 
-    public static void getActivityTypesByGymId(GymCompany gymCompany, IActionPostServiceResult action) {
+    public static void getActivityTypesByGymId(String tkn, GymCompany gymCompany, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ACTIVITY_TYPES)
                 .addQueryParameter("gymCompanyId", String.valueOf(gymCompany.getId()))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -111,11 +114,12 @@ public class ActivityTypeApiService {
                 });
     }
 
-    public static void getActivityType(int activityTypeId, IActionPostServiceResult action) {
+    public static void getActivityType(String tkn, int activityTypeId, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ACTIVITY_TYPES + "/{id}")
                 .addPathParameter("id", String.valueOf(activityTypeId))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -141,11 +145,12 @@ public class ActivityTypeApiService {
 
     }
 
-    public static void createActivityType(ActivityType pActivityType, IActionPostServiceResult action) {
+    public static void createActivityType(String tkn, ActivityType pActivityType, IActionPostServiceResult action) {
         AndroidNetworking.post(FitGymApiService.ACTIVITY_TYPES)
                 .addJSONObjectBody(pActivityType.toJSONObject())
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -170,12 +175,13 @@ public class ActivityTypeApiService {
                 });
     }
 
-    public static void updateActivityType(ActivityType pActivityType, IActionPostServiceResult action) {
+    public static void updateActivityType(String tkn, ActivityType pActivityType, IActionPostServiceResult action) {
         AndroidNetworking.put(FitGymApiService.ACTIVITY_TYPES + "/{id}")
                 .addPathParameter("id", String.valueOf(pActivityType.getId()))
                 .addJSONObjectBody(pActivityType.toJSONObject())
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override

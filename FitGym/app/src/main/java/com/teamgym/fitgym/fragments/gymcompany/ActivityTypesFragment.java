@@ -33,6 +33,7 @@ public class ActivityTypesFragment extends Fragment {
     List<ActivityType> activityTypes;
     int activityTypesOldSize = 0;
     GymCompany gymCompany;
+    String tkn = "";
 
     public ActivityTypesFragment() {
         // Required empty public constructor
@@ -46,6 +47,7 @@ public class ActivityTypesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_activity_types, container, false);
 
         gymCompany = GymCompany.from(getActivity().getIntent().getExtras());
+        tkn = getActivity().getIntent().getStringExtra("token");
 
         FloatingActionButton fabAddActivityType = (FloatingActionButton) view.findViewById(R.id.addActivityTypeButton);
         fabAddActivityType.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +56,7 @@ public class ActivityTypesFragment extends Fragment {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AddEditActivityTypeActivity.class);
                 intent.putExtras(gymCompany.toBundle());
+                intent.putExtra("token", tkn);
                 activityTypesOldSize = activityTypes.size();
                 context.startActivity(intent);
             }
@@ -62,6 +65,7 @@ public class ActivityTypesFragment extends Fragment {
         activityTypesRecyclerView = (RecyclerView) view.findViewById(R.id.activityTypesRecyclerView);
         activityTypes = new ArrayList<>();
         activityTypesAdapter = new ActivityTypesAdapter(activityTypes);
+        activityTypesAdapter.setTkn(tkn);
         activityTypesLayoutManager = new GridLayoutManager(view.getContext(), 1);
         activityTypesRecyclerView.setAdapter(activityTypesAdapter);
         activityTypesRecyclerView.setLayoutManager(activityTypesLayoutManager);
@@ -70,7 +74,7 @@ public class ActivityTypesFragment extends Fragment {
     }
 
     private void updateActivityTypes() {
-        ActivityTypeApiService.getActivityTypesByGymId(gymCompany, new IActionPostServiceResult<List<ActivityType>>() {
+        ActivityTypeApiService.getActivityTypesByGymId(tkn, gymCompany, new IActionPostServiceResult<List<ActivityType>>() {
             @Override
             public void execute(List<ActivityType> result) {
                 activityTypes = result;
@@ -83,9 +87,9 @@ public class ActivityTypesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        activityTypesAdapter.verifyIfItemChanged();
+        activityTypesAdapter.verifyIfItemChanged(tkn);
         if (activityTypesOldSize == 0) return;
-        ActivityTypeApiService.getActivityTypesByGymId(gymCompany, new IActionPostServiceResult<List<ActivityType>>() {
+        ActivityTypeApiService.getActivityTypesByGymId(tkn, gymCompany, new IActionPostServiceResult<List<ActivityType>>() {
             @Override
             public void execute(List<ActivityType> activityTypes) {
                 if (activityTypesOldSize != activityTypes.size()) {

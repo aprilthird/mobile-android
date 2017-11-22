@@ -27,6 +27,7 @@ public class AboutPersonalTrainerActivity extends AppCompatActivity {
     ANImageView photoANImageView;
     PTrainer trainer;
     PTrainer imageTrainer;
+    String tkn = "";
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -40,11 +41,8 @@ public class AboutPersonalTrainerActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        if (getIntent().getBundleExtra("trainerForDetail") == null) {
-            
-        }
-
         trainer = PTrainer.from(getIntent().getExtras());
+        tkn = getIntent().getStringExtra("token");
 
         FloatingActionButton fabEditTrainer = (FloatingActionButton) findViewById(R.id.editTrainerButton);
         fabEditTrainer.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +51,7 @@ public class AboutPersonalTrainerActivity extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AddEditPersonalTrainerActivity.class);
                 intent.putExtras(trainer.toBundle());
+                intent.putExtra("token", tkn);
                 imageTrainer = trainer;
                 context.startActivity(intent);
             }
@@ -93,7 +92,7 @@ public class AboutPersonalTrainerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (trainer == null || imageTrainer == null) return;
-        PTrainerApiService.getTrainer(trainer.getId(), new IActionPostServiceResult<PTrainer>() {
+        PTrainerApiService.getTrainer(tkn, trainer.getId(), new IActionPostServiceResult<PTrainer>() {
             @Override
             public void execute(PTrainer trainerResult) {
                 if(!imageTrainer.equals(trainerResult)) {

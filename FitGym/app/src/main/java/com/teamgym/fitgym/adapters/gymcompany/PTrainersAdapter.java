@@ -1,6 +1,5 @@
 package com.teamgym.fitgym.adapters.gymcompany;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +25,7 @@ import java.util.List;
 public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.ViewHolder> {
     private List<PTrainer> trainers;
     private PTrainer imageTrainer;
+    private String tkn;
     private int currentPosition = 0;
     private int currentId = -1;
 
@@ -38,6 +38,14 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
 
     public List<PTrainer> getTrainers() {
         return trainers;
+    }
+
+    public String getTkn() {
+        return tkn;
+    }
+
+    public void setTkn(String tkn) {
+        this.tkn = tkn;
     }
 
     public void setTrainers(List<PTrainer> trainers) {
@@ -70,7 +78,8 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AboutPersonalTrainerActivity.class);
-                intent.putExtra("trainerForDetail", trainer.toBundle());
+                intent.putExtras(trainer.toBundle());
+                intent.putExtra("token", tkn);
                 imageTrainer = trainer;
                 currentPosition = position;
                 currentId = trainer.getId();
@@ -84,10 +93,10 @@ public class PTrainersAdapter extends RecyclerView.Adapter<PTrainersAdapter.View
         return trainers.size();
     }
 
-    public PTrainersAdapter verifyIfItemChanged() {
+    public PTrainersAdapter verifyIfItemChanged(String tkn) {
         if (trainers.isEmpty()) return this;
         if (currentId == -1 || imageTrainer == null) return this;
-        PTrainerApiService.getTrainer(currentId, new IActionPostServiceResult<PTrainer>() {
+        PTrainerApiService.getTrainer(tkn, currentId, new IActionPostServiceResult<PTrainer>() {
             @Override
             public void execute(PTrainer trainer) {
                 if (!trainer.equals(imageTrainer)) {

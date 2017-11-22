@@ -1,6 +1,7 @@
 package com.teamgym.fitgym.models;
 
 import android.os.Bundle;
+import android.util.EventLog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -210,13 +211,13 @@ public class Client {
         bundle.putString("firstName", firstName);
         bundle.putString("lastName", lastName);
         bundle.putString("username", username);
-        bundle.putString("birthDate", birthDate.toString());
+        bundle.putLong("birthDate", birthDate.getTime());
         bundle.putString("address", address);
         bundle.putString("email", email);
         bundle.putString("gender", gender);
         bundle.putString("photoUrl", photoUrl);
         bundle.putString("height", height.toString());
-        bundle.putString("createdAt", createdAt.toString());
+        bundle.putLong("createdAt", createdAt.getTime());
         bundle.putString("updatedAt", updatedAt);
         bundle.putBundle("trainer", pTrainer.toBundle());
         return bundle;
@@ -226,6 +227,9 @@ public class Client {
         if (bundle == null) return null;
         Client client = new Client();
         try {
+            Date birthDateD = new Date(), createdAtD = new Date();
+            birthDateD.setTime(bundle.getLong("birthDate"));
+            createdAtD.setTime(bundle.getLong("createdAt"));
             client.setId(bundle.getInt("id"))
                     .setFirstName(bundle.getString("firstName"))
                     .setLastName(bundle.getString("lastName"))
@@ -235,13 +239,13 @@ public class Client {
                     .setAddress(bundle.getString("address"))
                     .setPhotoUrl(bundle.getString("photoUrl"))
                     .setHeight(new BigDecimal(bundle.getString("height")))
-                    .setBirthDate(((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")).parse(bundle.getString("birthDate"))))
+                    .setBirthDate(birthDateD)
                     .setUpdatedAt(bundle.getString("updatedAt"))
-                    .setCreatedAt(((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy")).parse(bundle.getString("createdAt"))))
+                    .setCreatedAt(createdAtD)
                     .setpTrainer(PTrainer.from(bundle.getBundle("trainer")));
             return client;
         }
-        catch (ParseException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
         return null;

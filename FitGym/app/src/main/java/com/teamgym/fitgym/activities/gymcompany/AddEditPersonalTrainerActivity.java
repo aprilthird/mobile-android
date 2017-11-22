@@ -3,7 +3,6 @@ package com.teamgym.fitgym.activities.gymcompany;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -13,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.models.GymCompany;
@@ -24,7 +22,6 @@ import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,13 +41,15 @@ public class AddEditPersonalTrainerActivity extends AppCompatActivity {
     BetterSpinner genderSpinner;
     AppCompatButton birthDateButton;
     int mYear, mMonth, mDay;
+    String tkn = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_personal_trainer);
-
         PTrainer trainer = PTrainer.from(getIntent().getExtras());
+        tkn = getIntent().getStringExtra("token");
+
         firstNameEditText = (TextInputEditText) findViewById(R.id.firstNameTextInputEditText);
         lastNameEditText = (TextInputEditText) findViewById(R.id.lastNameTextInputEditText);
         usernameEditText = (TextInputEditText) findViewById(R.id.usernameTextInputEditText);
@@ -220,7 +219,7 @@ public class AddEditPersonalTrainerActivity extends AppCompatActivity {
                     GymCompany gymCompany = GymCompany.from(getIntent().getExtras());
                     pTrainer.setGymCompany(gymCompany);
                     pTrainer.setPhotoUrl("no-photo");
-                    PTrainerApiService.createTrainer(pTrainer, new IActionPostServiceResult() {
+                    PTrainerApiService.createTrainer(tkn, pTrainer, new IActionPostServiceResult() {
                         @Override
                             public void execute(Object result) {
                             Snackbar.make(view, getString(R.string.alert_create_success), Snackbar.LENGTH_LONG * 2)
@@ -234,7 +233,7 @@ public class AddEditPersonalTrainerActivity extends AppCompatActivity {
                     });
                 }
                 else {
-                    PTrainerApiService.updateTrainer(pTrainer, new IActionPostServiceResult() {
+                    PTrainerApiService.updateTrainer(tkn, pTrainer, new IActionPostServiceResult() {
                         @Override
                         public void execute(Object result) {
                             Snackbar.make(view, getString(R.string.alert_save_success), Snackbar.LENGTH_LONG * 2)

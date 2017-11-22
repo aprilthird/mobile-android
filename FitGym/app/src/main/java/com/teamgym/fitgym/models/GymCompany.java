@@ -23,6 +23,7 @@ public class GymCompany{
     private String createdAt;
     private String updatedAt;
     private String logoUrl;
+    private String tkn;
 
     public GymCompany() {
     }
@@ -95,6 +96,15 @@ public class GymCompany{
 
     public GymCompany setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+        return this;
+    }
+
+    public String getTkn() {
+        return tkn;
+    }
+
+    public GymCompany setTkn(String tkn) {
+        this.tkn = tkn;
         return this;
     }
 

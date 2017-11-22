@@ -33,6 +33,7 @@ public class TrainersFragment extends Fragment {
     List<PTrainer> trainers;
     int trainersOldSize = 0;
     GymCompany gymCompany;
+    String tkn = "";
 
     public TrainersFragment() {
         // Required empty public constructor
@@ -44,6 +45,7 @@ public class TrainersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_trainers, container, false);
 
         gymCompany = GymCompany.from(getActivity().getIntent().getExtras());
+        tkn = getActivity().getIntent().getStringExtra("token");
 
         FloatingActionButton fabAddTrainer = (FloatingActionButton) view.findViewById(R.id.addTrainerButton);
         fabAddTrainer.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,7 @@ public class TrainersFragment extends Fragment {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AddEditPersonalTrainerActivity.class);
                 intent.putExtras(gymCompany.toBundle());
+                intent.putExtra("token", tkn);
                 trainersOldSize = trainers.size();
                 context.startActivity(intent);
             }
@@ -60,6 +63,7 @@ public class TrainersFragment extends Fragment {
         trainersRecyclerView = (RecyclerView) view.findViewById(R.id.trainersRecyclerView);
         trainers = new ArrayList<>();
         trainersAdapter = new PTrainersAdapter(trainers);
+        trainersAdapter.setTkn(tkn);
         trainersLayoutManager = new GridLayoutManager(view.getContext(), 2);
         trainersRecyclerView.setAdapter(trainersAdapter);
         trainersRecyclerView.setLayoutManager(trainersLayoutManager);
@@ -68,7 +72,7 @@ public class TrainersFragment extends Fragment {
     }
 
     private void updateTrainers() {
-        PTrainerApiService.getTrainersByGymId(gymCompany, new IActionPostServiceResult<List<PTrainer>>() {
+        PTrainerApiService.getTrainersByGymId(tkn, gymCompany, new IActionPostServiceResult<List<PTrainer>>() {
             @Override
             public void execute(List<PTrainer> result) {
                 trainers = result;
@@ -81,9 +85,9 @@ public class TrainersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        trainersAdapter.verifyIfItemChanged();
+        trainersAdapter.verifyIfItemChanged(tkn);
         if (trainersOldSize == 0) return;
-        PTrainerApiService.getTrainersByGymId(gymCompany, new IActionPostServiceResult<List<PTrainer>>() {
+        PTrainerApiService.getTrainersByGymId(tkn, gymCompany, new IActionPostServiceResult<List<PTrainer>>() {
             @Override
             public void execute(List<PTrainer> trainers) {
                 if(trainersOldSize != trainers.size()) {

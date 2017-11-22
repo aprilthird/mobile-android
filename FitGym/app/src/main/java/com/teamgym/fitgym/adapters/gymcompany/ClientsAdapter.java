@@ -23,12 +23,21 @@ import java.util.List;
 public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHolder> {
 
     private List<Client> clients ;
+    private String tkn;
 
     public ClientsAdapter(List<Client> clients) {
         this.clients = clients;
     }
 
     public ClientsAdapter(){
+    }
+
+    public String getTkn() {
+        return tkn;
+    }
+
+    public void setTkn(String tkn) {
+        this.tkn = tkn;
     }
 
     @Override
@@ -58,6 +67,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ViewHold
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AboutClientActivity.class);
                 intent.putExtras(client.toBundle());
+                intent.putExtra("token", tkn);
                 context.startActivity(intent);
             }
         });

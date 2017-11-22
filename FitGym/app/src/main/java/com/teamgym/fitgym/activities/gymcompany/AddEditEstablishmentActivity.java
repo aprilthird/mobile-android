@@ -18,6 +18,7 @@ public class AddEditEstablishmentActivity extends AppCompatActivity {
     TextInputEditText nameTextInputEditText;
     TextInputEditText locationXTextInputEditText;
     TextInputEditText locationYTextInputEditText;
+    String tkn = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class AddEditEstablishmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_establishment);
 
         Establishment establishment = Establishment.from(getIntent().getExtras());
+        tkn = getIntent().getStringExtra("token");
 
         nameTextInputEditText = (TextInputEditText) findViewById(R.id.nameTextInputEditText);
         locationXTextInputEditText = (TextInputEditText) findViewById(R.id.locationXTextInputEditText);
@@ -92,7 +94,7 @@ public class AddEditEstablishmentActivity extends AppCompatActivity {
                 if (establishment == null) {
                     GymCompany gymCompany = GymCompany.from(getIntent().getExtras());
                     pEstablishment.setGymCompany(gymCompany);
-                    EstablishmentApiService.createEstablishment(pEstablishment, new IActionPostServiceResult<Establishment>() {
+                    EstablishmentApiService.createEstablishment(tkn, pEstablishment, new IActionPostServiceResult<Establishment>() {
                         @Override
                         public void execute(Establishment establishment1) {
                             Snackbar.make(view, getString(R.string.alert_create_success), Snackbar.LENGTH_LONG * 2)
@@ -106,7 +108,7 @@ public class AddEditEstablishmentActivity extends AppCompatActivity {
                     });
                 }
                 else {
-                    EstablishmentApiService.updateEstablishment(pEstablishment, new IActionPostServiceResult<Establishment>() {
+                    EstablishmentApiService.updateEstablishment(tkn, pEstablishment, new IActionPostServiceResult<Establishment>() {
                         @Override
                         public void execute(Establishment establishment1) {
                             Snackbar.make(view, getString(R.string.alert_save_success), Snackbar.LENGTH_LONG * 2)

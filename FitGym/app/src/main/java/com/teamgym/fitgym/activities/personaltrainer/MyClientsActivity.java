@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.adapters.gymcompany.ClientsAdapter;
+import com.teamgym.fitgym.utilities.DataService;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 

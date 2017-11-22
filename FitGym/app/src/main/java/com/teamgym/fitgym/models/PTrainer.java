@@ -2,10 +2,13 @@ package com.teamgym.fitgym.models;
 
 import android.os.Bundle;
 
+import com.teamgym.fitgym.FitGymApp;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -198,9 +201,9 @@ public class PTrainer {
         bundle.putString("address", address);
         bundle.putString("phoneNumber", phoneNumber);
         bundle.putString("gender", gender);
-        bundle.putString("createdAt", createdAt.toString());
+        bundle.putLong("createdAt", createdAt.getTime());
         bundle.putString("updatedAt", updatedAt);
-        bundle.putString("birthDate", birthDate.toString());
+        bundle.putLong("birthDate", birthDate.getTime());
         bundle.putString("photoUrl", photoUrl);
         bundle.putBundle("gymCompany", gymCompany.toBundle());
         return bundle;
@@ -209,15 +212,19 @@ public class PTrainer {
     public static PTrainer from(Bundle bundle) {
         if (bundle == null) return null;
         PTrainer pTrainer = new PTrainer();
+        // Emulator: EEE MMM dd HH:mm:ss z yyyy
         try {
+            Date birthDateD = new Date(), createdAtD = new Date();
+            birthDateD.setTime(bundle.getLong("birthDate"));
+            createdAtD.setTime(bundle.getLong("createdAt"));
             pTrainer.setId(bundle.getInt("id"))
                     .setFirstName(bundle.getString("firstName"))
                     .setLastName(bundle.getString("lastName"))
                     .setUsername(bundle.getString("username"))
                     .setAddress(bundle.getString("address"))
                     .setPhoneNumber(bundle.getString("phoneNumber"))
-                    .setBirthDate((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(bundle.getString("birthDate"))))
-                    .setCreatedAt((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(bundle.getString("createdAt"))))
+                    .setBirthDate(birthDateD)
+                    .setCreatedAt(createdAtD)
                     .setUpdatedAt(bundle.getString("updatedAt"))
                     .setPhotoUrl(bundle.getString("photoUrl"))
                     .setGender(bundle.getString("gender"))

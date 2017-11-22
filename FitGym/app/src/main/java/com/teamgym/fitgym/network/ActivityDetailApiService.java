@@ -8,8 +8,8 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.models.GymCompany;
-import com.teamgym.fitgym.models.PTrainer;
+import com.teamgym.fitgym.models.Activity;
+import com.teamgym.fitgym.models.ActivityDetail;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,18 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Usuario on 22/10/2017.
+ * Created by Usuario on 22/11/2017.
  */
 
-public class PTrainerApiService {
-    public static List<PTrainer> trainers = new ArrayList<>();
-    public static PTrainer trainer = new PTrainer();
+public class ActivityDetailApiService {
+    public static List<ActivityDetail> activityDetails = new ArrayList<>();
+    public static ActivityDetail activityDetail = new ActivityDetail();
 
-    public static void getTrainers(String tkn, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS)
-                .addHeaders("Authorization", "Basic " + tkn)
+    public static void getActivityDetails(String tkn, IActionPostServiceResult action) {
+        AndroidNetworking.get(FitGymApiService.ACTIVITY_DETAILS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -39,8 +39,8 @@ public class PTrainerApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            trainers = PTrainer.from(response.getJSONArray("personalTrainers"));
-                            action.execute(trainers);
+                            activityDetails = ActivityDetail.from(response.getJSONArray("activityDetails"));
+                            action.execute(activityDetails);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
@@ -54,12 +54,12 @@ public class PTrainerApiService {
                 });
     }
 
-    public static void getTrainersByGymId(String tkn, int gymCompanyId, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS)
+    public static void getActivitiesByActivityId(String tkn, int activityId, IActionPostServiceResult action) {
+        AndroidNetworking.get(FitGymApiService.ACTIVITY_DETAILS)
+                .addQueryParameter("activityId", String.valueOf(activityId))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addHeaders("Authorization", "Basic " + tkn)
-                .addQueryParameter("gymCompanyId", String.valueOf(gymCompanyId))
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -69,8 +69,8 @@ public class PTrainerApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            trainers = PTrainer.from(response.getJSONArray("personalTrainers"));
-                            action.execute(trainers);
+                            activityDetails = ActivityDetail.from(response.getJSONArray("activityDetails"));
+                            action.execute(activityDetails);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
@@ -84,12 +84,12 @@ public class PTrainerApiService {
                 });
     }
 
-    public static void getTrainersByGymId(String tkn, GymCompany gymCompany, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS)
+    public static void getActivitiesByActivityId(String tkn, Activity activity, IActionPostServiceResult action) {
+        AndroidNetworking.get(FitGymApiService.ACTIVITY_DETAILS)
+                .addQueryParameter("activityId", String.valueOf(activity.getId()))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addHeaders("Authorization", "Basic " + tkn)
-                .addQueryParameter("gymCompanyId", String.valueOf(gymCompany.getId()))
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -99,8 +99,8 @@ public class PTrainerApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            trainers = PTrainer.from(response.getJSONArray("personalTrainers"), gymCompany);
-                            action.execute(trainers);
+                            activityDetails = ActivityDetail.from(response.getJSONArray("activityDetails"), activity);
+                            action.execute(activityDetails);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
@@ -114,13 +114,12 @@ public class PTrainerApiService {
                 });
     }
 
-    public static void getTrainersByGymId(String tkn, int gymCompanyId, String query, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS)
+    public static void getActivityDetail(String tkn, int activityDetailId, IActionPostServiceResult action) {
+        AndroidNetworking.get(FitGymApiService.ACTIVITY_DETAILS + "/{id}")
+                .addPathParameter("id", String.valueOf(activityDetailId))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addHeaders("Authorization", "Basic " + tkn)
-                .addQueryParameter("gymCompanyId", String.valueOf(gymCompanyId))
-                .addQueryParameter("query", query)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -130,8 +129,39 @@ public class PTrainerApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            trainers = PTrainer.from(response.getJSONArray("personalTrainers"));
-                            action.execute(trainers);
+                            activityDetail = ActivityDetail.from(response.getJSONObject("activityDetail"));
+                            action.execute(activityDetail);
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(Resources.getSystem().getString(R.string.app_name), anError.getLocalizedMessage());
+                    }
+                });
+
+    }
+
+    public static void createActivityDetail(String tkn, ActivityDetail pActivityDetail, IActionPostServiceResult action) {
+        AndroidNetworking.post(FitGymApiService.ACTIVITY_DETAILS)
+                .addJSONObjectBody(pActivityDetail.toJSONObject())
+                .setTag(R.string.app_name)
+                .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if("error".equalsIgnoreCase(response.getString("status"))) {
+                                Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
+                                return;
+                            }
+                            activityDetail = ActivityDetail.from(response.getJSONObject("activityDetail"));
+                            action.execute(activityDetail);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
@@ -145,11 +175,12 @@ public class PTrainerApiService {
                 });
     }
 
-    public static void getTrainer(String tkn, int personalTrainerId, final IActionPostServiceResult action) {
-        AndroidNetworking.get(FitGymApiService.PERSONAL_TRAINERS + "/{id}")
+    public static void updateActivityDetail(String tkn, ActivityDetail pActivityDetail, IActionPostServiceResult action) {
+        AndroidNetworking.put(FitGymApiService.ACTIVITY_DETAILS + "/{id}")
+                .addPathParameter("id", String.valueOf(pActivityDetail.getId()))
+                .addJSONObjectBody(pActivityDetail.toJSONObject())
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
-                .addPathParameter("id", String.valueOf(personalTrainerId))
                 .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -160,99 +191,8 @@ public class PTrainerApiService {
                                 Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
                                 return;
                             }
-                            trainer = PTrainer.from(response.getJSONObject("personalTrainer"));
-                            action.execute(trainer);
-                        }
-                        catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        Log.d(Resources.getSystem().getString(R.string.app_name), anError.getLocalizedMessage());
-                    }
-                });
-    }
-
-    public static void createTrainer(String tkn, PTrainer pTrainer, final IActionPostServiceResult action) {
-        AndroidNetworking.post(FitGymApiService.PERSONAL_TRAINERS)
-                .setTag(R.string.app_name)
-                .setPriority(Priority.LOW)
-                .addJSONObjectBody(pTrainer.toJSONObject())
-                .addHeaders("Authorization", "Basic " + tkn)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if("error".equalsIgnoreCase(response.getString("status"))) {
-                                Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
-                                return;
-                            }
-                            trainer = PTrainer.from(response.getJSONObject("personalTrainer"));
-                            action.execute(trainer);
-                        }
-                        catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        Log.d(Resources.getSystem().getString(R.string.app_name), anError.getLocalizedMessage());
-                    }
-                });
-    }
-
-    public static void updateTrainer (String tkn, PTrainer pTrainer, final IActionPostServiceResult action) {
-        AndroidNetworking.put(FitGymApiService.PERSONAL_TRAINERS + "/{id}")
-                .setTag(R.string.app_name)
-                .setPriority(Priority.LOW)
-                .addPathParameter("id", String.valueOf(pTrainer.getId()))
-                .addJSONObjectBody(pTrainer.toJSONObject())
-                .addHeaders("Authorization", "Basic " + tkn)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if("error".equalsIgnoreCase(response.getString("status"))) {
-                                Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
-                                return;
-                            }
-                            trainer = PTrainer.from(response.getJSONObject("personalTrainer"));
-                            action.execute(trainer);
-                        }
-                        catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        Log.d(Resources.getSystem().getString(R.string.app_name), anError.getLocalizedMessage());
-                    }
-                });
-    }
-
-    public static void deleteTrainer (String tkn, int personalTrainerId, final IActionPostServiceResult action) {
-        AndroidNetworking.delete(FitGymApiService.PERSONAL_TRAINERS + "/{id}")
-                .setTag(R.string.app_name)
-                .setPriority(Priority.LOW)
-                .addPathParameter("id", String.valueOf(personalTrainerId))
-                .addHeaders("Authorization", "Basic " + tkn)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if("error".equalsIgnoreCase(response.getString("status"))) {
-                                Log.d(Resources.getSystem().getString(R.string.app_name), response.getString("message"));
-                                return;
-                            }
-                            boolean successful = "ok".equalsIgnoreCase(response.getString("status"));
-                            action.execute(successful);
+                            activityDetail = ActivityDetail.from(response.getJSONObject("activityDetail"));
+                            action.execute(activityDetail);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();

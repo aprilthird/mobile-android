@@ -127,4 +127,5 @@
     <string name="title_activity_about_client_trainer">AboutClientTrainerActivity</string>
     <string name="title_activity_schedule_trainer">ScheduleTrainerActivity</string>
     <string name="title_activity_add_edit_client">AddEditClientActivity</string>
+    <string name="title_activity_client_routines">ClientRoutinesActivity</string>
 </resources>

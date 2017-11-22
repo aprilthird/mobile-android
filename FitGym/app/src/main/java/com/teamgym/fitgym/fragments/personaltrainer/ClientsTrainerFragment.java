@@ -11,15 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alamkanak.weekview.WeekView;
 import com.teamgym.fitgym.R;
-import com.teamgym.fitgym.adapters.gymcompany.ClientsAdapter;
 import com.teamgym.fitgym.adapters.personaltrainer.ClientsPTrainerAdapter;
 import com.teamgym.fitgym.models.Client;
 import com.teamgym.fitgym.models.PTrainer;
 import com.teamgym.fitgym.network.ClientApiService;
 import com.teamgym.fitgym.network.IActionPostServiceResult;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +33,7 @@ public class ClientsTrainerFragment extends Fragment {
     List<Client> clients;
     int clientsOldSize = 0;
     PTrainer pTrainer;
+    String tkn = "";
 
     public ClientsTrainerFragment() {
         // Required empty public constructor
@@ -44,7 +45,11 @@ public class ClientsTrainerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_clients_trainer, container, false);
 
+        Format dateFormat = android.text.format.DateFormat.getDateFormat(getActivity().getApplicationContext());
+        String pattern = ((SimpleDateFormat) dateFormat).toLocalizedPattern();
+
         pTrainer = PTrainer.from(getActivity().getIntent().getExtras());
+        tkn = getActivity().getIntent().getStringExtra("token");
 
         FloatingActionButton fabAddClient = (FloatingActionButton) view.findViewById(R.id.addClientButton);
         fabAddClient.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +62,7 @@ public class ClientsTrainerFragment extends Fragment {
         clientsRecyclerView = (RecyclerView) view.findViewById(R.id.clientsTrainerRecyclerView);
         clients = new ArrayList<>();
         clientsAdapter = new ClientsPTrainerAdapter(clients);
+        clientsAdapter.setTkn(tkn);
         clientsLayoutManager = new GridLayoutManager(view.getContext(), 2);
         clientsRecyclerView.setLayoutManager(clientsLayoutManager);
         clientsRecyclerView.setAdapter(clientsAdapter);
@@ -65,7 +71,7 @@ public class ClientsTrainerFragment extends Fragment {
     }
 
     private void updateClients() {
-        ClientApiService.getClientsByTrainerId(pTrainer, new IActionPostServiceResult<List<Client>>() {
+        ClientApiService.getClientsByTrainerId(tkn, pTrainer, new IActionPostServiceResult<List<Client>>() {
             @Override
             public void execute(List<Client> result) {
                 clients = result;
@@ -78,9 +84,9 @@ public class ClientsTrainerFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        clientsAdapter.verifyIfItemChanged();
+        clientsAdapter.verifyIfItemChanged(tkn);
         if (clientsOldSize == 0) return;
-        ClientApiService.getClientsByTrainerId(pTrainer, new IActionPostServiceResult<List<Client>>() {
+        ClientApiService.getClientsByTrainerId(tkn, pTrainer, new IActionPostServiceResult<List<Client>>() {
             @Override
             public void execute(List<Client> result) {
                 if (clientsOldSize != result.size()) {

@@ -33,6 +33,7 @@ public class EstablishmentsFragment extends Fragment {
     List<Establishment> establishments;
     int establishmentsOldSize = 0;
     GymCompany gymCompany;
+    String tkn = "";
 
     public EstablishmentsFragment() {
         // Required empty public constructor
@@ -46,6 +47,7 @@ public class EstablishmentsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_establishments, container, false);
 
         gymCompany = GymCompany.from(getActivity().getIntent().getExtras());
+        tkn = getActivity().getIntent().getStringExtra("token");
 
         FloatingActionButton fabAddEstablishment = (FloatingActionButton) view.findViewById(R.id.addEstablishmentButton);
         fabAddEstablishment.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,7 @@ public class EstablishmentsFragment extends Fragment {
         establishmentsRecyclerView = (RecyclerView) view.findViewById(R.id.establishmentsRecyclerView);
         establishments = new ArrayList<>();
         establishmentsAdapter = new EstablishmentsAdapter(establishments);
+        establishmentsAdapter.setTkn(tkn);
         establishmentsLayoutManager = new GridLayoutManager(view.getContext(), 1);
         establishmentsRecyclerView.setAdapter(establishmentsAdapter);
         establishmentsRecyclerView.setLayoutManager(establishmentsLayoutManager);
@@ -70,7 +73,7 @@ public class EstablishmentsFragment extends Fragment {
     }
 
     private void updateEstablishments() {
-        EstablishmentApiService.getEstablishmentsByGymId(gymCompany, new IActionPostServiceResult<List<Establishment>>() {
+        EstablishmentApiService.getEstablishmentsByGymId(tkn, gymCompany, new IActionPostServiceResult<List<Establishment>>() {
             @Override
             public void execute(List<Establishment> result) {
                 establishments = result;
@@ -83,9 +86,9 @@ public class EstablishmentsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        establishmentsAdapter.verifyIfItemChanged();
+        establishmentsAdapter.verifyIfItemChanged(tkn);
         if (establishmentsOldSize == 0 || establishments.size() == 0) return;
-        EstablishmentApiService.getEstablishmentsByGymId(gymCompany, new IActionPostServiceResult() {
+        EstablishmentApiService.getEstablishmentsByGymId(tkn, gymCompany, new IActionPostServiceResult() {
             @Override
             public void execute(Object result) {
                 if (establishmentsOldSize != establishments.size()) {

@@ -1,5 +1,6 @@
 package com.teamgym.fitgym.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -102,7 +103,11 @@ public class LoginActivity extends AppCompatActivity {
                             else {
                                 receivedToken = response.getString("token");
                                 GymCompany gymCompany = GymCompany.from(response.getJSONObject("gymCompany"));
-                                startActivity((new Intent(view.getContext(), NavigationGymCompanyActivity.class)).putExtras(gymCompany.toBundle()));
+                                Context context = view.getContext();
+                                Intent intent = new Intent(context, NavigationGymCompanyActivity.class);
+                                intent.putExtra("token", receivedToken);
+                                intent.putExtras(gymCompany.toBundle());
+                                startActivity(intent);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -133,11 +138,15 @@ public class LoginActivity extends AppCompatActivity {
                                 receivedToken = response.getString("token");
                                 PTrainer pTrainer = PTrainer.from(response.getJSONObject("personalTrainer"));
                                 int gymCompanyId = response.getJSONObject("personalTrainer").getInt("gymCompanyId");
-                                GymCompanyApiService.getGymCompany(gymCompanyId, new IActionPostServiceResult<GymCompany>() {
+                                GymCompanyApiService.getGymCompany(receivedToken, gymCompanyId, new IActionPostServiceResult<GymCompany>() {
                                     @Override
                                     public void execute(GymCompany gymCompany) {
                                         pTrainer.setGymCompany(gymCompany);
-                                        startActivity((new Intent(view.getContext(), NavigationTrainerActivity.class)).putExtras(pTrainer.toBundle()));
+                                        Context context = view.getContext();
+                                        Intent intent = new Intent(context, NavigationTrainerActivity.class);
+                                        intent.putExtra("token", receivedToken);
+                                        intent.putExtras(pTrainer.toBundle());
+                                        startActivity(intent);
                                     }
                                 });
                             }

@@ -26,6 +26,7 @@ public class EstablishmentsAdapter extends RecyclerView.Adapter<EstablishmentsAd
     private Establishment imageEstablishment;
     private int currentPosition = 0;
     private int currentId = -1;
+    private String tkn;
 
     public EstablishmentsAdapter() {
     }
@@ -40,6 +41,14 @@ public class EstablishmentsAdapter extends RecyclerView.Adapter<EstablishmentsAd
 
     public void setEstablishments(List<Establishment> establishments) {
         this.establishments = establishments;
+    }
+
+    public String getTkn() {
+        return tkn;
+    }
+
+    public void setTkn(String tkn) {
+        this.tkn = tkn;
     }
 
     @Override
@@ -63,6 +72,7 @@ public class EstablishmentsAdapter extends RecyclerView.Adapter<EstablishmentsAd
                 Context context = view.getContext();
                 Intent intent = new Intent(context, AboutEstablishmentActivity.class);
                 intent.putExtras(establishment.toBundle());
+                intent.putExtra("token", tkn);
                 context.startActivity(intent);
             }
         });
@@ -74,10 +84,10 @@ public class EstablishmentsAdapter extends RecyclerView.Adapter<EstablishmentsAd
         return establishments.size();
     }
 
-    public EstablishmentsAdapter verifyIfItemChanged() {
+    public EstablishmentsAdapter verifyIfItemChanged(String tkn) {
         if(establishments.isEmpty()) return this;
         if(imageEstablishment == null || currentId == -1) return this;
-        EstablishmentApiService.getEstablishment(currentId, new IActionPostServiceResult<Establishment>() {
+        EstablishmentApiService.getEstablishment(tkn, currentId, new IActionPostServiceResult<Establishment>() {
             @Override
             public void execute(Establishment establishment) {
                 if (!imageEstablishment.equals(establishment)) {

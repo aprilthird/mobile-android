@@ -23,8 +23,17 @@ public class ActivityTypesAdapter extends RecyclerView.Adapter<ActivityTypesAdap
     private ActivityType imageActivityType;
     private int currentPosition = 0;
     private int currentId = -1;
+    private String tkn;
 
     public ActivityTypesAdapter() {
+    }
+
+    public String getTkn() {
+        return tkn;
+    }
+
+    public void setTkn(String tkn) {
+        this.tkn = tkn;
     }
 
     @Override
@@ -69,10 +78,10 @@ public class ActivityTypesAdapter extends RecyclerView.Adapter<ActivityTypesAdap
         }
     }
 
-    public ActivityTypesAdapter verifyIfItemChanged() {
+    public ActivityTypesAdapter verifyIfItemChanged(String tkn) {
         if(activityTypes.isEmpty()) return this;
         if(currentId == -1 || imageActivityType == null) return this;
-        ActivityTypeApiService.getActivityType(currentId, new IActionPostServiceResult<ActivityType>() {
+        ActivityTypeApiService.getActivityType(tkn, currentId, new IActionPostServiceResult<ActivityType>() {
             @Override
             public void execute(ActivityType activityType) {
                 if(!imageActivityType.equals(activityType)) {

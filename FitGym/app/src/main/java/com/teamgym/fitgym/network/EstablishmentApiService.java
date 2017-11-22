@@ -25,10 +25,11 @@ public class EstablishmentApiService {
     public static List<Establishment> establishments = new ArrayList<>();
     public static Establishment establishment = new Establishment();
 
-    public static void getEstablishments (IActionPostServiceResult action) {
+    public static void getEstablishments (String tkn, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ESTABLISHMENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -53,11 +54,12 @@ public class EstablishmentApiService {
                 });
     }
 
-    public static void getEstablishmentsByGymId (int gymCompanyId, IActionPostServiceResult action) {
+    public static void getEstablishmentsByGymId (String tkn, int gymCompanyId, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ESTABLISHMENTS)
                 .addQueryParameter("gymCompanyId", String.valueOf(gymCompanyId))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -82,11 +84,12 @@ public class EstablishmentApiService {
                 });
     }
 
-    public static void getEstablishmentsByGymId (GymCompany gymCompany, IActionPostServiceResult action) {
+    public static void getEstablishmentsByGymId (String tkn, GymCompany gymCompany, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ESTABLISHMENTS)
                 .addQueryParameter("gymCompanyId", String.valueOf(gymCompany.getId()))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -111,11 +114,12 @@ public class EstablishmentApiService {
                 });
     }
 
-    public static void getEstablishment (int establishmentId, IActionPostServiceResult action) {
+    public static void getEstablishment (String tkn, int establishmentId, IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.ESTABLISHMENTS + "/{id}")
                 .addPathParameter("id", String.valueOf(establishmentId))
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -140,11 +144,12 @@ public class EstablishmentApiService {
                 });
     }
 
-    public static void createEstablishment (Establishment pEstablishment, IActionPostServiceResult action) {
+    public static void createEstablishment (String tkn, Establishment pEstablishment, IActionPostServiceResult action) {
         AndroidNetworking.post(FitGymApiService.ESTABLISHMENTS)
                 .addJSONObjectBody(pEstablishment.toJSONObject())
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -169,12 +174,13 @@ public class EstablishmentApiService {
                 });
     }
 
-    public static void updateEstablishment (Establishment pEstablishment, IActionPostServiceResult action) {
+    public static void updateEstablishment (String tkn, Establishment pEstablishment, IActionPostServiceResult action) {
         AndroidNetworking.put(FitGymApiService.ESTABLISHMENTS + "/{id}")
                 .addPathParameter("id", String.valueOf(pEstablishment.getId()))
                 .addJSONObjectBody(pEstablishment.toJSONObject())
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override

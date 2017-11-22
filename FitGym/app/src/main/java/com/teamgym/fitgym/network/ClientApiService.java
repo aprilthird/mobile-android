@@ -25,10 +25,11 @@ public class ClientApiService {
     public static List<Client> clients = new ArrayList<>();
     public static Client client = new Client();
 
-    public static List<Client> getClients(final IActionPostServiceResult action) {
+    public static List<Client> getClients(String tkn, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -54,10 +55,11 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByGymId (int gymCompanyId, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByGymId (String tkn, int gymCompanyId, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .addQueryParameter("gymCompanyId", String.valueOf(gymCompanyId))
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -84,10 +86,11 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByTrainerId(int personalTrainerId, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByTrainerId(String tkn, int personalTrainerId, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .addQueryParameter("personalTrainerId", String.valueOf(personalTrainerId))
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -114,10 +117,11 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByTrainerId(final PTrainer trainer, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByTrainerId(String tkn, final PTrainer trainer, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .addQueryParameter("personalTrainerId", String.valueOf(trainer.getId()))
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -144,12 +148,13 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByGymId (int gymCompanyId, String query, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByGymId (String tkn, int gymCompanyId, String query, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addQueryParameter("gymCompanyId", String.valueOf(gymCompanyId))
                 .addQueryParameter("query", query)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -175,12 +180,13 @@ public class ClientApiService {
         return clients;
     }
 
-    public static List<Client> getClientsByTrainerId(int personalTrainerId, String query, final IActionPostServiceResult action) {
+    public static List<Client> getClientsByTrainerId(String tkn, int personalTrainerId, String query, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addQueryParameter("personalTrainerId", String.valueOf(personalTrainerId))
                 .addQueryParameter("query", query)
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -206,11 +212,12 @@ public class ClientApiService {
         return clients;
     }
 
-    public static Client getClient(final int clientId, final IActionPostServiceResult action) {
+    public static Client getClient(String tkn, final int clientId, final IActionPostServiceResult action) {
         AndroidNetworking.get(FitGymApiService.CLIENTS)
                 .setTag(R.string.app_name)
                 .setPriority(Priority.LOW)
                 .addPathParameter("id", String.valueOf(clientId))
+                .addHeaders("Authorization", "Basic " + tkn)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override

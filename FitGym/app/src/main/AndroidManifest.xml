@@ -84,7 +84,8 @@
             android:label="@string/title_activity_navigation_client" />
         <activity
             android:name=".activities.personaltrainer.NavigationTrainerActivity"
-            android:label="@string/title_activity_navigation_trainer" />
+            android:label="@string/title_activity_navigation_trainer"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activities.gymcompany.NavigationGymCompanyActivity"
             android:label="@string/title_activity_navigation_gym_company"
@@ -129,6 +130,7 @@
         <activity
             android:name=".activities.gymcompany.AddEditEstablishmentActivity"
             android:label="@string/title_activity_add_edit_establishment"
+            android:launchMode="singleInstance"
             android:parentActivityName=".activities.gymcompany.NavigationGymCompanyActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -138,6 +140,7 @@
         <activity
             android:name=".activities.gymcompany.AddEditActivityTypeActivity"
             android:label="@string/title_activity_add_edit_type"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -153,7 +156,8 @@
 
         <activity
             android:name=".activities.gymcompany.AboutEstablishmentActivity"
-            android:label="@string/title_activity_about_establishment">
+            android:label="@string/title_activity_about_establishment"
+            android:launchMode="singleInstance">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.teamgym.fitgym.activities.gymcompany.NavigationGymCompanyActivity" />
@@ -161,6 +165,7 @@
         <activity
             android:name=".activities.personaltrainer.AboutClientTrainerActivity"
             android:label="@string/title_activity_about_client_trainer"
+            android:launchMode="singleInstance"
             android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -170,6 +175,16 @@
         <activity
             android:name=".activities.personaltrainer.AddEditClientActivity"
             android:label="@string/title_activity_add_edit_client"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.ClientRoutinesActivity"
+            android:label="@string/title_activity_client_routines"
             android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

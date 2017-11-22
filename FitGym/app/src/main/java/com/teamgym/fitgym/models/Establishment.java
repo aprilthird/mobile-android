@@ -103,15 +103,17 @@ public class Establishment {
         if (bundle == null) return null;
         Establishment establishment = new Establishment();
         try {
+            Date createdAtD = new Date();
+            createdAtD.setTime(bundle.getLong("createdAt"));
             establishment.setId(bundle.getInt("id"))
                     .setName(bundle.getString("name"))
                     .setLocationX(bundle.getDouble("locationX"))
                     .setLocationY(bundle.getDouble("locationY"))
-                    .setCreatedAt((new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(bundle.getString("createdAt"))))
+                    .setCreatedAt(createdAtD)
                     .setGymCompany(GymCompany.from(bundle.getBundle("gymCompany")));
             return establishment;
         }
-        catch (ParseException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -123,7 +125,7 @@ public class Establishment {
         bundle.putString("name", name);
         bundle.putDouble("locationX", locationX);
         bundle.putDouble("locationY", locationY);
-        bundle.putString("createdAt", createdAt.toString());
+        bundle.putLong("createdAt", createdAt.getTime());
         bundle.putBundle("gymCompany", gymCompany.toBundle());
         return bundle;
     }

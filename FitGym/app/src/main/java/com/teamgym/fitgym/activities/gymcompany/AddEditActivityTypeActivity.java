@@ -18,6 +18,7 @@ import com.teamgym.fitgym.network.IActionPostServiceResult;
 
 public class AddEditActivityTypeActivity extends AppCompatActivity {
     TextInputEditText descriptionTextInputEditText;
+    String tkn = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class AddEditActivityTypeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActivityType activityType = ActivityType.from(getIntent().getExtras());
+        tkn = getIntent().getStringExtra("token");
         descriptionTextInputEditText = (TextInputEditText) findViewById(R.id.descriptionTextInputEditText);
 
         if (activityType != null) {
@@ -53,7 +55,7 @@ public class AddEditActivityTypeActivity extends AppCompatActivity {
                 if (activityType == null) {
                     GymCompany gymCompany = GymCompany.from(getIntent().getExtras());
                     pActivityType.setGymCompany(gymCompany);
-                    ActivityTypeApiService.createActivityType(pActivityType, new IActionPostServiceResult() {
+                    ActivityTypeApiService.createActivityType(tkn, pActivityType, new IActionPostServiceResult() {
                         @Override
                         public void execute(Object result) {
                             Snackbar.make(view, getString(R.string.alert_create_success), Snackbar.LENGTH_LONG * 2)
@@ -67,7 +69,7 @@ public class AddEditActivityTypeActivity extends AppCompatActivity {
                     });
                 }
                 else {
-                    ActivityTypeApiService.updateActivityType(pActivityType, new IActionPostServiceResult() {
+                    ActivityTypeApiService.updateActivityType(tkn, pActivityType, new IActionPostServiceResult() {
                         @Override
                         public void execute(Object result) {
                             Snackbar.make(view, getString(R.string.alert_save_success), Snackbar.LENGTH_LONG * 2)

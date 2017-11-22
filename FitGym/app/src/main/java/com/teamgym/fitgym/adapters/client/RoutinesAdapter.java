@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
@@ -57,14 +58,12 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
         final Activity activity= activities.get(position);
         final Establishment establishment= establishments.get(position);
         final ActivityType activityType= activityTypes.get(position);
-        holder.photoANImageView.setErrorImageResId(R.mipmap.ic_launcher);
-        holder.photoANImageView.setDefaultImageResId(R.mipmap.ic_launcher);
-        holder.photoANImageView.setImageUrl(null);
+        /*
         holder.exerciseTextView.setText(activityType.getDescription());
-        holder.starttimeTextView.setText(activity.getStartTimeAsString());
-        holder.endtimeTextView.setText(activity.getEndTimeAsString());
+        holder.starttimeTextView.setText(activityDetail.getStartTimeAsString());
+        holder.endtimeTextView.setText(activityDetail.getEndTimeAsString());
         holder.locationTextView.setText(establishment.getName());
-
+*/
 
     }
 
@@ -91,24 +90,19 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ANImageView photoANImageView;
+        ImageView imageImageView;
         TextView dayTextView;
-        TextView exerciseTextView;
-        TextView starttimeTextView;
-        TextView endtimeTextView;
+        TextView rangeTimeTextView;
         TextView locationTextView;
-
+        TextView detailsTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            photoANImageView= (ANImageView) itemView.findViewById(R.id.photoANImageView);
+            imageImageView = (ImageView) itemView.findViewById(R.id.imageImageView);
             dayTextView= (TextView) itemView.findViewById(R.id.dayTextView);
-            exerciseTextView= (TextView) itemView.findViewById(R.id.exerciseTextView);
-            starttimeTextView= (TextView) itemView.findViewById(R.id.starttimeTextView);
-            endtimeTextView= (TextView) itemView.findViewById(R.id.endtimeTextView);
+            rangeTimeTextView = (TextView) itemView.findViewById(R.id.rangeTimeTextView);
+            detailsTextView = (TextView) itemView.findViewById(R.id.detailsTextView);
             locationTextView= (TextView) itemView.findViewById(R.id.locationTextView);
-
-
         }
     }
 }

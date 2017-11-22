@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.androidnetworking.widget.ANImageView;
 import com.teamgym.fitgym.R;
 import com.teamgym.fitgym.activities.personaltrainer.AboutClientTrainerActivity;
+import com.teamgym.fitgym.activities.personaltrainer.ClientRoutinesActivity;
 import com.teamgym.fitgym.fragments.personaltrainer.ClientsTrainerFragment;
 import com.teamgym.fitgym.models.Client;
 import com.teamgym.fitgym.network.ClientApiService;
@@ -28,6 +29,7 @@ public class ClientsPTrainerAdapter extends RecyclerView.Adapter<ClientsPTrainer
         private Client imageClient;
         private int currentPosition = 0;
         private int currentId = -1;
+        private String tkn;
 
         public ClientsPTrainerAdapter(List<Client> clients) {
             this.clients = clients;
@@ -36,7 +38,15 @@ public class ClientsPTrainerAdapter extends RecyclerView.Adapter<ClientsPTrainer
         public ClientsPTrainerAdapter() {
         }
 
-        @Override
+        public String getTkn() {
+            return tkn;
+        }
+
+        public void setTkn(String tkn) {
+            this.tkn = tkn;
+        }
+
+    @Override
         public ClientsPTrainerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             return new ViewHolder(LayoutInflater
@@ -62,9 +72,24 @@ public class ClientsPTrainerAdapter extends RecyclerView.Adapter<ClientsPTrainer
                     Context context = view.getContext();
                     Intent intent = new Intent(context, AboutClientTrainerActivity.class);
                     intent.putExtras(client.toBundle());
+                    intent.putExtra("token", tkn);
                     imageClient = client;
                     currentPosition = position;
                     currentId = client.getId();
+                    context.startActivity(intent);
+                }
+            });
+            holder.foodImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                }
+            });
+            holder.routinesImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, ClientRoutinesActivity.class);
+                    intent.putExtras(client.toBundle());
                     context.startActivity(intent);
                 }
             });
@@ -84,10 +109,10 @@ public class ClientsPTrainerAdapter extends RecyclerView.Adapter<ClientsPTrainer
             return  clients;
         }
 
-        public ClientsPTrainerAdapter verifyIfItemChanged() {
+        public ClientsPTrainerAdapter verifyIfItemChanged(String tkn) {
             if (clients.size() == 0) return this;
             if (currentId == -1 || imageClient == null) return this;
-            ClientApiService.getClient(currentId, new IActionPostServiceResult<Client>() {
+            ClientApiService.getClient(tkn, currentId, new IActionPostServiceResult<Client>() {
                 @Override
                 public void execute(Client client) {
                     if (!imageClient.equals(client)) {

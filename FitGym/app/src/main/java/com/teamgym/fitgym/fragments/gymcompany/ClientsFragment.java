@@ -33,6 +33,7 @@ public class ClientsFragment extends Fragment {
     List<Client> clients;
     List<PTrainer> trainers;
     GymCompany gymCompany;
+    String tkn;
 
     public ClientsFragment() {
         // Required empty public constructor
@@ -47,7 +48,9 @@ public class ClientsFragment extends Fragment {
         trainers = new ArrayList<>();
         clients = new ArrayList<>();
         gymCompany = GymCompany.from(getActivity().getIntent().getExtras());
+        tkn = getActivity().getIntent().getStringExtra("token");
         clientsAdapter = new ClientsAdapter(clients);
+        clientsAdapter.setTkn(tkn);
         clientsLayoutManager = new GridLayoutManager(view.getContext(), 2);
         clientsRecyclerView.setAdapter(clientsAdapter);
         clientsRecyclerView.setLayoutManager(clientsLayoutManager);
@@ -56,11 +59,11 @@ public class ClientsFragment extends Fragment {
     }
 
     private void updateClients() {
-        PTrainerApiService.getTrainersByGymId(gymCompany.getId(), new IActionPostServiceResult<List<PTrainer>>() {
+        PTrainerApiService.getTrainersByGymId(tkn, gymCompany.getId(), new IActionPostServiceResult<List<PTrainer>>() {
             @Override
             public void execute(List<PTrainer> result) {
                 for(final PTrainer pt : result) {
-                    ClientApiService.getClientsByTrainerId(pt, new IActionPostServiceResult<List<Client>>() {
+                    ClientApiService.getClientsByTrainerId(tkn, pt, new IActionPostServiceResult<List<Client>>() {
                         @Override
                         public void execute(List<Client> result) {
                             clients.addAll(result);
