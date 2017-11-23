@@ -90,6 +90,7 @@ public class ClientsPTrainerAdapter extends RecyclerView.Adapter<ClientsPTrainer
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ClientRoutinesActivity.class);
                     intent.putExtras(client.toBundle());
+                    intent.putExtra("token", tkn);
                     context.startActivity(intent);
                 }
             });

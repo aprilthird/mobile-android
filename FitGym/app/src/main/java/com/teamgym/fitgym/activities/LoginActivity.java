@@ -71,8 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                     getToken(view, usernameEditText.getText().toString(), passwordEditText.getText().toString());
                 }
                 // TODO Validar Mensaje de Error de Login
-                if(receivedToken.isEmpty())
-                    Toast.makeText(view.getContext(), R.string.alert_invalid_login, Toast.LENGTH_SHORT).show();
+                // if(receivedToken.isEmpty())
+                    // Toast.makeText(view.getContext(), R.string.alert_invalid_login, Toast.LENGTH_SHORT).show();
             }
         });
 

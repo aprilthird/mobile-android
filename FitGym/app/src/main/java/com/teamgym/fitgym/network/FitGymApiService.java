@@ -13,7 +13,7 @@ public class FitGymApiService {
     public static String CLIENTS = "http://fitgym.azurewebsites.net/fitgymapi/v1/clients";
     public static String ESTABLISHMENTS = "http://fitgym.azurewebsites.net/fitgymapi/v1/establishments";
     public static String ACTIVITY_TYPES = "http://fitgym.azurewebsites.net/fitgymapi/v1/activitytypes";
-    public static String ACTIVITIES = "http://fitgym.azurewebsites.net/fitgymapi/v1/activityDetails";
+    public static String ACTIVITIES = "http://fitgym.azurewebsites.net/fitgymapi/v1/activities";
     public static String ACTIVITY_DETAILS = "http://fitgym.azurewebsites.net/fitgymapi/v1/activitydetails";
     public static String DIETS = "http://fitgym.azurewebsites.net/fitgymapi/v1/diets";
 }

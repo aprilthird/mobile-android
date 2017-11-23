@@ -36,6 +36,17 @@
     <string name="title_activity_navigation_trainer">NavigationTrainerActivity</string>
     <string name="title_activity_navigation_gym_company">NavigationGymCompanyActivity</string>
     <string name="title_activity_navigation_client">NavigationClientActivity</string>
+    <string name="title_activity_about_client">About Client</string>
+    <string name="title_activity_about_personal_trainer">About Personal Trainer</string>
+    <string name="title_activity_add_food">AddFoodActivity</string>
+    <string name="title_activity_add_edit_personal_trainer">AddEditPersonalTrainer</string>
+    <string name="title_activity_about_client_trainer">About Client</string>
+    <string name="title_activity_schedule_trainer">Schedule</string>
+    <string name="title_activity_add_edit_client">AddEditClientActivity</string>
+    <string name="title_activity_client_routines">Client Routines</string>
+    <string name="title_activity_food_diets">Client Diets</string>
+    <string name="title_activity_routine_details">Routine Details</string>
+    <string name="title_activity_add_edit_routine_detail">AddEditRoutineDetailActivity</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -75,11 +86,6 @@
     <string name="message_button_continue">Continue</string>
     <string name="message_button_got_it">Got it</string>
 
-    <string name="title_activity_about_client">About Client</string>
-    <string name="title_activity_about_personal_trainer">About Personal Trainer</string>
-    <string name="title_activity_add_food">AddFoodActivity</string>
-    <string name="title_activity_add_edit_personal_trainer">AddEditPersonalTrainer</string>
-
     <!-- Input Forms Strings -->
     <string name="hello_blank_fragment">Hello Blank Fragment!</string>
     <string name="input_trainer_first_name">First Name</string>
@@ -97,6 +103,9 @@
     <string name="input_trainer_sample_username">Sample Username</string>
     <string name="input_trainer_sample_gender">Gender</string>
     <string name="spinner_trainer_gender">Select Gender</string>
+    <string name="spinner_client_gender">Select Gender</string>
+    <string name="spinner_activity_type">Select Activity</string>
+    <string name="spinner_establishment">Select Establishment</string>
     <string name="input_trainer_sample_birth_date">Sample Date</string>
     <string name="input_trainer_sample_address">Sample Address</string>
     <string name="input_trainer_sample_phone_number">Sample Number</string>
@@ -124,8 +133,5 @@
     <string name="input_settings_gym_susbscriptions_description">Check your payment information</string>
     <string name="input_settings_gym_version">Version</string>
     <string name="input_settings_gym_sample_version">1.1</string>
-    <string name="title_activity_about_client_trainer">AboutClientTrainerActivity</string>
-    <string name="title_activity_schedule_trainer">ScheduleTrainerActivity</string>
-    <string name="title_activity_add_edit_client">AddEditClientActivity</string>
-    <string name="title_activity_client_routines">ClientRoutinesActivity</string>
+    <string name="title_activity_add_edit_routine">AddEditRoutineActivity</string>
 </resources>

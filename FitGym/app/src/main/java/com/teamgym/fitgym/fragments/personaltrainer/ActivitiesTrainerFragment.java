@@ -60,9 +60,23 @@ public class ActivitiesTrainerFragment extends Fragment implements MonthLoader.M
         WeekViewEvent event = new WeekViewEvent();
         Calendar now = Calendar.getInstance();
         Calendar then = Calendar.getInstance();
+        then.set(Calendar.HOUR_OF_DAY, now.get(Calendar.HOUR_OF_DAY) + 2);
         event.setStartTime(now);
         event.setEndTime(then);
+        event.setName("Roberto");
         events.add(event);
+
+        WeekViewEvent event2 = new WeekViewEvent();
+        Calendar t = Calendar.getInstance();
+        Calendar t2 = Calendar.getInstance();
+        t.set(Calendar.DAY_OF_MONTH, t.get(Calendar.DAY_OF_MONTH) + 1);
+        t2.set(Calendar.DAY_OF_MONTH, t2.get(Calendar.DAY_OF_MONTH) + 1);
+        t.set(Calendar.HOUR_OF_DAY, t.get(Calendar.HOUR_OF_DAY) + 4);
+        t2.set(Calendar.HOUR_OF_DAY, t2.get(Calendar.HOUR_OF_DAY) + 6);
+        event2.setStartTime(t);
+        event2.setEndTime(t2);
+        event2.setName("Bryan");
+        events.add(event2);
         return events;
     }
 

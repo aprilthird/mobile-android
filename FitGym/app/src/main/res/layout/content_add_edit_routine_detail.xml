@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.teamgym.fitgym.activities.personaltrainer.AddEditRoutineDetailActivity"
+    tools:showIn="@layout/activity_add_edit_routine_detail">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/repetitionsTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/repetitionsTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repetitions"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <com.weiwangcn.betterspinner.library.BetterSpinner
+        android:id="@+id/activityTypeSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:paddingTop="@dimen/big_margin"
+        app:layout_constraintTop_toBottomOf="@id/repetitionsTextInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:hint="@string/spinner_activity_type"
+        android:textColorHint="@color/black_overlay"
+        android:gravity="start"
+        android:textColor="@color/black_overlay"
+        android:textAlignment="viewStart"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/descriptionTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/activityTypeSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/descriptionTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"/>
+    </android.support.design.widget.TextInputLayout>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</android.support.constraint.ConstraintLayout>

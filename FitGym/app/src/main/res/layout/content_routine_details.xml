@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.teamgym.fitgym.activities.personaltrainer.ClientRoutinesActivity"
-    tools:showIn="@layout/activity_client_routines">
+    tools:context="com.teamgym.fitgym.activities.personaltrainer.RoutineDetailsActivity"
+    tools:showIn="@layout/activity_routine_details">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/routinesRecyclerView"
+        android:id="@+id/routineDetailsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/huge_margin"

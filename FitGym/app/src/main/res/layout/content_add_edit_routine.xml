@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.teamgym.fitgym.activities.personaltrainer.AddEditRoutineActivity"
+    tools:showIn="@layout/activity_add_edit_routine">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/dateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:padding="@dimen/big_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Date"
+        android:drawableEnd="@drawable/ic_date_range_black_24dp"
+        android:textAlignment="viewStart"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/startHourButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/big_margin"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/dateButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Start time"
+        android:drawableEnd="@drawable/ic_access_time_black_24dp"
+        android:textAlignment="viewStart"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/endHourButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:padding="@dimen/big_margin"
+        app:layout_constraintTop_toBottomOf="@id/startHourButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="End time"
+        android:drawableEnd="@drawable/ic_access_time_black_24dp"
+        android:textAlignment="viewStart"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.teamgym.fitgym.adapters.personaltrainer;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.teamgym.fitgym.R;
+import com.teamgym.fitgym.activities.personaltrainer.AddEditRoutineActivity;
+import com.teamgym.fitgym.activities.personaltrainer.RoutineDetailsActivity;
 import com.teamgym.fitgym.models.Activity;
+import com.teamgym.fitgym.models.Establishment;
 import com.teamgym.fitgym.network.ActivityApiService;
+import com.teamgym.fitgym.network.EstablishmentApiService;
 import com.teamgym.fitgym.network.IActionPostServiceResult;
 
 import java.util.List;
@@ -22,7 +28,11 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
     Activity imageActivity = null;
     int currentId = -1;
     int currentPosition = 0;
-    String tkn;
+    String tkn = "";
+
+    public RoutinesAdapter(List<Activity> activities) {
+        this.activities = activities;
+    }
 
     public List<Activity> getActivities() {
         return activities;
@@ -57,7 +67,24 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
         holder.detailsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                Context context = view.getContext();
+                Intent intent = new Intent(context, RoutineDetailsActivity.class);
+                intent.putExtras(activity.toBundle());
+                intent.putExtra("token", tkn);
+                context.startActivity(intent);
+            }
+        });
+        holder.editTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, AddEditRoutineActivity.class);
+                intent.putExtra("token", tkn);
+                intent.putExtra("activity", activity.toBundle());
+                imageActivity = activity;
+                currentId = activity.getId();
+                currentPosition = position;
+                context.startActivity(intent);
             }
         });
     }
@@ -73,12 +100,17 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
         ActivityApiService.getActivity(tkn, currentId, new IActionPostServiceResult<Activity>() {
             @Override
             public void execute(Activity activity) {
-                if (!imageActivity.equals(activity)) {
-                    activity.setClient(imageActivity.getClient());
-                    activity.setEstablishment(imageActivity.getEstablishment());
-                    activities.set(currentPosition, activity);
-                    notifyItemChanged(currentPosition);
-                }
+                EstablishmentApiService.getEstablishment(tkn, activity.getEstablishmentId(), new IActionPostServiceResult<Establishment>() {
+                    @Override
+                    public void execute(Establishment establishment) {
+                        activity.setEstablishment(establishment);
+                        if (!imageActivity.equals(activity)) {
+                            activity.setClient(imageActivity.getClient());
+                            activities.set(currentPosition, activity);
+                            notifyItemChanged(currentPosition);
+                        }
+                    }
+                });
             }
         });
         return this;
@@ -90,6 +122,7 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
         TextView locationTextView;
         TextView rangeTimeTextView;
         TextView detailsTextView;
+        TextView editTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -98,6 +131,7 @@ public class RoutinesAdapter extends RecyclerView.Adapter<RoutinesAdapter.ViewHo
             locationTextView = (TextView) itemView.findViewById(R.id.locationTextView);
             rangeTimeTextView = (TextView) itemView.findViewById(R.id.rangeTimeTextView);
             detailsTextView = (TextView) itemView.findViewById(R.id.detailsTextView);
+            editTextView = (TextView) itemView.findViewById(R.id.editTextView);
         }
     }
 }

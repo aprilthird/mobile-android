@@ -130,7 +130,7 @@ public class EstablishmentApiService {
                                 return;
                             }
                             establishment = Establishment.from(response.getJSONObject("establishment"));
-                            action.execute(establishmentId);
+                            action.execute(establishment);
                         }
                         catch (JSONException e) {
                             e.printStackTrace();

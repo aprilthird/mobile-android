@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.teamgym.fitgym.activities.personaltrainer.ClientRoutinesActivity"
-    tools:showIn="@layout/activity_client_routines">
+    tools:context="com.teamgym.fitgym.activities.personaltrainer.FoodDietsActivity"
+    tools:showIn="@layout/activity_food_diets">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/routinesRecyclerView"
+        android:id="@+id/foodDietsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/huge_margin"
-        android:clipToPadding="false">
+        android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

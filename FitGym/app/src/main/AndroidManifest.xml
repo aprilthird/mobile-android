@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -185,11 +185,50 @@
         <activity
             android:name=".activities.personaltrainer.ClientRoutinesActivity"
             android:label="@string/title_activity_client_routines"
+            android:launchMode="singleInstance"
             android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.FoodDietsActivity"
+            android:label="@string/title_activity_food_diets"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.personaltrainer.NavigationTrainerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.NavigationTrainerActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.RoutineDetailsActivity"
+            android:label="@string/title_activity_routine_details"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.personaltrainer.ClientRoutinesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.ClientRoutinesActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.AddEditRoutineDetailActivity"
+            android:label="@string/title_activity_add_edit_routine_detail"
+            android:parentActivityName=".activities.personaltrainer.RoutineDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.RoutineDetailsActivity" />
+        </activity>
+        <activity
+            android:name=".activities.personaltrainer.AddEditRoutineActivity"
+            android:label="@string/title_activity_add_edit_routine"
+            android:parentActivityName=".activities.personaltrainer.ClientRoutinesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamgym.fitgym.activities.personaltrainer.ClientRoutinesActivity" />
         </activity>
     </application>
 
