@@ -66,15 +66,6 @@
                 android:value="com.teamgym.fitgym.activities.personaltrainer.MyClientsActivity" />
         </activity>
         <activity
-            android:name=".activities.gymcompany.SubscriptionTypeActivity"
-            android:label="@string/title_activity_subscription_type"
-            android:parentActivityName=".activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.teamgym.fitgym.activities.LoginActivity" />
-        </activity>
-        <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:launchMode="singleInstance"
